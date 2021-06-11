@@ -613,7 +613,10 @@ html, body{ height: 100%; }
 .pad-bottom-70{
 	padding-bottom: 70px;
 }
-
+.p_img{
+    width: 400px;
+    height: 400px;
+}
 .block-title{
 	font-size:52px;
 	font-family: 'nautilus_pompiliusregular';
@@ -661,6 +664,8 @@ html, body{ height: 100%; }
     position: absolute;
     top: 0;
     right: 0;
+    width: 250px;
+    height:250px;
 }
 
 
