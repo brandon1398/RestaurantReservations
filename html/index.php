@@ -31,7 +31,7 @@
     <title>Restaurant Reservations</title>
 </head>
 <body>
-
+    
     <div id="site-header">
         <header id="header" class="header-block-top">
             <div class="container">
