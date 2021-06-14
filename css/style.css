@@ -258,7 +258,7 @@ html, body{ height: 100%; }
 	bottom:20px;
 	right:40px;
 	display:none;			
-	background:url(../images/icon_top.png) no-repeat;
+	background:url(../upload/restaurante.jpg) no-repeat;
 }
 
 .scrollup:hover{
@@ -306,7 +306,8 @@ html, body{ height: 100%; }
 	height:inherit;
 }
 .main-menu .navbar-default .navbar-nav li a{
-	color:#fff;
+	color:#e75b1e;
+    font-weight: bold;
 }
 .main-menu nav li a{
 	padding: 43px 0px 15px;
@@ -395,7 +396,7 @@ html, body{ height: 100%; }
 -------------------------------------------------------------------*/
 
 .banner{
-	background:url(../upload/banner.jpg) no-repeat center top;
+	background:url(../upload/rest.jpg) no-repeat center top;
 	background-attachment:fixed;
 	background-size:cover;
 	height:100vh;
@@ -542,6 +543,7 @@ html, body{ height: 100%; }
     transform: translate3d(-50%, 20px, 0);
     opacity: 0;
   }
+}
   @media (min-width: 768px) {
     from {
       -webkit-transform: translate(-50%, 0);
@@ -558,7 +560,6 @@ html, body{ height: 100%; }
       opacity: 0;
     }
   }
-}
 
 @keyframes scrollWheel {
   from {
@@ -575,6 +576,7 @@ html, body{ height: 100%; }
     transform: translate3d(-50%, 20px, 0);
     opacity: 0;
   }
+}
   @media (min-width: 768px) {
     from {
       -webkit-transform: translate(-50%, 0);
@@ -591,7 +593,7 @@ html, body{ height: 100%; }
       opacity: 0;
     }
   }
-}
+
 	
 /*------------------------------------------------------------------
     ABOUT AREA
@@ -1426,16 +1428,9 @@ html, body{ height: 100%; }
 	margin-top: -8px;
 }
 
-.panel-pricing:hover
-
-
 /*------------------------------------------------------------------
     RESERVATIONS AREA
 -------------------------------------------------------------------*/
-
-.reservations-main{
-	
-}
 
 .form-reservations-box{
 	width:70%;
@@ -1570,10 +1565,14 @@ textarea:focus, input:focus, select:focus, .bootstrap-select .dropdown-toggle:fo
 
 .footer-main{}
 .footer-news{
-	background:url(../images/newsletter-bg.jpg) no-repeat center;
+	background:url(../upload/rest.jpg) no-repeat center;
 	background-attachment:fixed;
 	background-size:cover;
 	position:relative;
+}
+
+.footer_l{
+    margin-bottom: 40px;
 }
 
 .footer-news::before {
@@ -1674,11 +1673,9 @@ textarea:focus, input:focus, select:focus, .bootstrap-select .dropdown-toggle:fo
     padding: 4px;
 }
 .footer-box {
-	background-image:-moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(..images/footer_background.jpg);
-	background-image:-webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(../images/footer_background.jpg);
-	background-image:radial-gradient(ellipse at center, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(../images/footer_background.jpg);
-	background-color:#111;background-position:center;background-repeat:no-repeat;background-size:cover
-	}
+	background-image:radial-gradient(ellipse at center, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(../upload/rest.jpg);
+	background-color:#111;background-position:center;background-repeat:no-repeat;background-size:cover;
+}
 .socials-box li {
     display: inline-block;
     opacity: 1;
