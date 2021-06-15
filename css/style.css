@@ -222,30 +222,6 @@ html, body{ height: 100%; }
 	margin-left: -10px;
 } 
 
-#loader  {
-     position: fixed;
-     top: 0;
-     left: 0;
-     right: 0;
-     bottom: 0;
-     background-color: #fefefe;
-     z-index: 9999;
-    height: 100%;
- }
-
-#status  {
-     width: 200px;
-     height: 200px;
-     position: absolute;
-     left: 50%;
-     top: 50%;
-     background-image: url(../upload/loader-animation.gif);
-     background-repeat: no-repeat;
-     background-position: center;
-     margin: -100px 0 0 -100px;
- }
-
-
 /*------------------------------------------------------------------
    	Scrollup
 -------------------------------------------------------------------*/
@@ -282,6 +258,8 @@ html, body{ height: 100%; }
     width: 100%;
     top: 0;
     left: 0;
+    /* background: black;
+    opacity: .8; */
 }
 
 .main-menu{}
@@ -306,7 +284,7 @@ html, body{ height: 100%; }
 	height:inherit;
 }
 .main-menu .navbar-default .navbar-nav li a{
-	color:#e75b1e;
+	color:#fff;
     font-weight: bold;
 }
 .main-menu nav li a{
@@ -401,6 +379,7 @@ html, body{ height: 100%; }
 	background-size:cover;
 	height:100vh;
 	min-height:100%;
+    background-color: transparent;
 }
 
 .banner .container, .banner .banner-static, .banner .col-lg-12 {
@@ -926,6 +905,52 @@ html, body{ height: 100%; }
 	color:#fff;
 }
 
+/*------------------------------------------------------------------
+    REGISTER AREA
+-------------------------------------------------------------------*/
+div.form-reg{
+    text-align: center;
+    border: 2px solid #e75b1e;
+    background: black;
+    opacity: .9;
+    color: #fff;
+}
+
+
+
+form label{
+    width: 100px;
+    color: #fff;
+    font-size: 15px;
+    position: relative;
+}
+
+form input{
+    width:300px;
+    color: #000;
+}
+
+.btn_reg{
+    background: #e75b1e;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    width: 300px;
+    height: 50px;
+}
+
+.btn_reg:hover{
+    /*background: linear-gradient(to bottom right,#ff4d00,#ffe5da );*/
+    background: transparent;
+    border: 2px solid #e75b1e;
+    transition: background .7s;
+}
+
+
+form.formClass{
+    margin-bottom: 40px;
+}
 /*------------------------------------------------------------------
     TEAM AREA
 -------------------------------------------------------------------*/
