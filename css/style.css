@@ -947,9 +947,25 @@ form input{
     transition: background .7s;
 }
 
-
 form.formClass{
     margin-bottom: 40px;
+}
+
+input:invalid{
+    border: 2px solid #ff0000;
+}
+
+input:focus{
+    background: #e75b1e;
+    color: white;
+}
+span.nor{
+    display: none;
+}
+span.asteriscoR{
+    display: inline;
+    color: red;
+    font-size: 20px;
 }
 /*------------------------------------------------------------------
     TEAM AREA
