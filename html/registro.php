@@ -1,3 +1,8 @@
+<?php
+    require_once "formularios.controlador.php";
+    require_once "formularios.modelo.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +24,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css?v=<?php echo (rand()); ?>" >
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- color -->
@@ -81,7 +86,7 @@
                                 <h1 class="text-title">REGISTRO</h1> 
                                 <!-- <h1><span class="typer" id="some-id" data-delay="300" data-delim=":" data-words="CLIENTE" data-colors="red"></span></h1> -->
                                 <br>
-                                <form class="formClass" action="../php/validar.php" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
+                                <form class="formClass" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
                                     <label for="nombre">Nombre</label>
                                     <input type="text" class="req" id="nombre" name="nombre" pattern="[A-Z][a-z]+">
                                     <span id="asterisco1" class="nor">*</span>
@@ -102,9 +107,24 @@
                                     <input type="password" placeholder="**************" name="password" id="password">
                                     <span id="asterisco5" class="nor">*</span>
                                     <br><br>
+
+                                    <?php
+                                        $registro = ControladorFormularios::ctrRegistroCliente();
+                                        if($registro == "ok"){
+                                            // limpiamos las variables
+                                            echo '<script>
+                                                if(window.history.replaceState){
+                                                    window.history.replaceState(null, null, window.location="index.html");
+                                                }
+                                            </script>'; 
+                                            
+                                        }
+                                    ?>
                                     <input class="btn_reg" type="submit" value="Registrarse">
                                     <br><br>
                                 </form>
+                                <!-- <button class="btn_reg" src="#" >Iniciar Sesi&oacute;n</button>
+                                <br><br> -->
                             </div>
                                                       
                         </div>
@@ -113,6 +133,7 @@
             </div>
         </div>
     </div>
+
 
     
 
@@ -211,4 +232,3 @@
 <script src="../js/javascript.js"></script>
 </body>
 </html>
-	
