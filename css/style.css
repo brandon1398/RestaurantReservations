@@ -909,6 +909,7 @@ input:invalid{
 }
 
 input:focus{
+    color: #000;
     border: 2px solid #e75b1e;
     color: rgb(0, 0, 0);
 }
