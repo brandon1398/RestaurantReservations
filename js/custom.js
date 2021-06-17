@@ -1,12 +1,3 @@
-/******************************************
-    File Name: custom.js
-    Template Name: Landigoo
-    Created By: MelodyThemes
-    Envato Profile: http://themeforest.net/user/melodythemes
-    Website: https://melodythemes.com
-    Version: 1.0
-/****************************************** */
-
 (function($) {
     "use strict";
 	

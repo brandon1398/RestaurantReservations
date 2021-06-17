@@ -1,6 +1,6 @@
 <?php
-    require_once "formularios.controlador.php";
-    require_once "formularios.modelo.php";
+    require_once "../php/controlador/formularios.controlador.php";
+    require_once "../php/modelos/formularios.modelo.php";
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
                                 </button>
                                 <div class="logo">
                                     <a class="navbar-brand js-scroll-trigger logo-header" href="#">
-                                        <img src="../upload/connies_logo.png" style="width:200px; height: 100px;" alt="">
+                                        <img src="../upload/connies_logo.png" style="width:150px; height: 80px;" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
             <div class="footer-in-main">
                 <div class="footer-logo">
                     <div class="text-center">
-                        <img src="../upload/connies_logo.png" width="200px" height="100px" alt="" />
+                        <img src="../upload/connies_logo.png" width="150px" height="80px" alt="" />
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
