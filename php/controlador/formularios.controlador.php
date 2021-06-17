@@ -1,4 +1,5 @@
 <?php
+
     class ControladorFormularios{
         
         /* ----------------------------------
@@ -33,7 +34,7 @@
                         $_SESSION["validarIngreso"] = "ok";
                         echo '<script>
                             if(window.history.replaceState){
-                                window.history.replaceState(null, null, window.location="index.html");
+                                window.history.replaceState(null, null, window.location="../html/cliente/inicio.php");
                             }
                         </script>';
                     }else{

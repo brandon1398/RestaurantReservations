@@ -1,5 +1,4 @@
 function validateForm(){
-    alert("hola")
     var band = false;
     var cont = 0;
     var array = ['nombre','apellido','telefono','email','password'];
@@ -24,8 +23,6 @@ function validateForm(){
 
 function validateFormLogin(){
     var band = false;
-    alert("hola login");
-
     var array = ["nombre","password"];
     for(var i=0;i<2;i++){
         if(document.getElementById(array[i]).value==""){

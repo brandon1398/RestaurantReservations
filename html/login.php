@@ -104,7 +104,7 @@
                                         $login = new ControladorFormularios();
                                         $login -> ctrLoginUser();      
                                     ?>
-                                    <input class="btn_reg" type="submit" value="ENTRAR">
+                                    <input class="btn_reg hvr-underline-from-center" type="submit" value="ENTRAR">
                                     <br><br>
                                 </form>
                                 <!-- <button class="btn_reg" src="#" >Iniciar Sesi&oacute;n</button>
