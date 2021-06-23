@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    $_SESSION['validarIngreso'] = "null";
+    $_SESSION['apellido'] = "null";
     require_once "../php/controlador/formularios.controlador.php";
     require_once "../php/modelos/formularios.modelo.php";
 ?>

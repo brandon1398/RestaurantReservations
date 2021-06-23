@@ -1,0 +1,146 @@
+.adm{
+    background-color: red;
+}
+body{
+    background-image: url("../upload/restaurante.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    background-color: transparent;
+}
+
+body::before{
+    content: '';
+    background-color: rgba(0,0,0,0.6);
+}
+header{
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+}
+
+input#btn-menu, header label{display: none;}
+
+
+header label i.fas{
+   width: 100%;
+}
+
+i.fas{
+    color: #e75b1e;
+}
+
+i.fas:hover{
+    cursor: pointer;
+}
+
+nav.menu{
+    position: absolute;
+    background-color: #000;
+    opacity: .7;
+    width: 100%;
+    border-radius: 1px;
+}
+
+nav.menu ul{
+    list-style: none;
+    display: flex;
+    float: right;
+    margin: 10px;
+    padding-right: 20px;
+}
+
+nav.menu li a{
+    text-transform: uppercase;
+    color: #fff;
+    
+}
+
+nav.menu li a:hover{
+    background: transparent;
+    border-bottom: 3px solid #777;
+    transition: all .3s ease-in-out;
+}
+
+@media (max-width:768px){
+    nav.menu li a{
+        padding: 15px 0px;
+    }
+    header label{
+        position: relative;
+        left: -30px;
+        top: 20px;
+        display: block;
+        float: right;
+    }
+    nav.menu{
+        position: absolute;
+        background: #000;
+        margin-left: -100%;
+        top: 50px;
+        transition: all .3s ease-in-out;
+        z-index: 1;
+        
+    }
+    nav.menu ul{
+        flex-direction: column;
+        float: left;
+    }
+    nav.menu ul li{
+        background: transparent;
+        text-align: -webkit-match-parent;
+        width: 100%;
+    }
+
+    nav.menu ul li a{
+        width: 100%;
+        background: transparent;
+    }
+    #btn-menu:checked ~ nav.menu{
+        margin: 0px;
+        transition: all .3s ease-in-out;
+    }
+}
+
+nav.menu ul li a:focus{
+    color: #e75b1e;
+    background: transparent;
+}
+
+div.main{
+    position: relative;
+    top: 62px;
+    margin: 0 !important;
+    padding: 15px 0 15px;
+    line-height: normal;
+    font-size: 100%;
+    height: 100%;
+    text-align: center;
+    
+}
+
+div.logo{
+    position: relative;
+    float: left;
+}
+
+div.datos{
+    position: relative;
+    float: right;
+    width: 65%;
+    margin-right: 50px;
+    background-color: rgb(241, 86, 15, .8);
+    color: #fff;
+}
+
+div.usuarios{
+    background-color: rgb(0, 0, 0);
+    width: 50%;
+    margin: 10px;
+    height: 50vh;
+}
+
+/*
+    <label for="nombre"><?php echo $_SESSION["validarIngreso"];?></label>
+*/

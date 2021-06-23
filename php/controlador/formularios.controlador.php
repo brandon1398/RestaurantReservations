@@ -1,5 +1,4 @@
-<?php
-
+<?php 
     class ControladorFormularios{
         
         /* ----------------------------------
@@ -31,12 +30,23 @@
                 $respuesta = ModeloFormularios::mdlLoginUser($tabla,$item,$valor);
                 if(isset($respuesta["id_usuario"])){
                     if($respuesta["nombre_usuario"] == $_POST["nombre"] && $respuesta["password_usuario"] == $_POST["password"]){
-                        $_SESSION["validarIngreso"] = "ok";
-                        echo '<script>
-                            if(window.history.replaceState){
-                                window.history.replaceState(null, null, window.location="../html/cliente/inicio.php");
-                            }
-                        </script>';
+                        $_SESSION["validarIngreso"] = $respuesta["nombre_usuario"];
+                        $_SESSION["apellido"] = $respuesta["apellido_usuario"];
+                        if($respuesta["id_rol_fk"] == 1){
+                            echo '<script>
+                                    if(window.history.replaceState){
+                                        window.history.replaceState(null,null,window.location.href)
+                                    }
+                                    window.location = "../html/administrador/inicio.php";
+                                </script>';
+                        }else if($respuesta["id_rol_fk"] == 2){
+                            echo '<script>
+                                if(window.history.replaceState){
+                                    window.history.replaceState(null,null,window.location.href);
+                                }
+                                window.location = "../html/cliente/inicio.php";
+                            </script>';
+                        }
                     }else{
                         echo '<script>
                             if(window.history.replaceState){

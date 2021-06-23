@@ -191,7 +191,7 @@ html, body{ height: 100%; }
 	bottom:20px;
 	right:40px;
 	display:none;			
-	background:url(../upload/rest.jpg) no-repeat;
+	background:url(../upload/r_l.jpg) no-repeat;
 }
 
 .scrollup:hover{
@@ -329,7 +329,7 @@ html, body{ height: 100%; }
 -------------------------------------------------------------------*/
 
 .banner{
-	background:url(../upload/restaurante.jpg) no-repeat center top;
+	background:url(../upload/r_l.jpg) no-repeat center top;
 	background-attachment:fixed;
 	background-size:cover;
 	height:100vh;
@@ -928,7 +928,7 @@ span.asteriscoR{
 
 .footer-main{}
 .footer-news{
-	background:url(../upload/restaurante.jpg) no-repeat center;
+	background:url(../upload/r_l.jpg) no-repeat center;
 	background-attachment:fixed;
 	background-size:cover;
 	position:relative;
@@ -1036,7 +1036,7 @@ span.asteriscoR{
     padding: 4px;
 }
 .footer-box {
-	background-image:radial-gradient(ellipse at center, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(../upload/restaurante.jpg);
+	background-image:radial-gradient(ellipse at center, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(../upload/r_l.jpg);
 	background-color:#111;background-position:center;background-repeat:no-repeat;background-size:cover;
 }
 .socials-box li {
