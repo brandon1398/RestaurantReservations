@@ -72,7 +72,7 @@
                 <li><a href="#">Categorias</a></li>
                 <li><a href="#">Platos</a></li>
                 <li><a href="#">Usuarios</a></li>
-                <li><a href="../../html/administrador/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user"></i></a></li>
+                <li><a href="../../html/administrador/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
         </nav>
     </header>
