@@ -32,6 +32,7 @@
                     if($respuesta["nombre_usuario"] == $_POST["nombre"] && $respuesta["password_usuario"] == $_POST["password"]){
                         $_SESSION["validarIngreso"] = $respuesta["nombre_usuario"];
                         $_SESSION["apellido"] = $respuesta["apellido_usuario"];
+                        $_SESSION['id'] = $respuesta["id_usuario"];
                         if($respuesta["id_rol_fk"] == 1){
                             echo '<script>
                                     if(window.history.replaceState){

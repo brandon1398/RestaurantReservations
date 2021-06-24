@@ -72,25 +72,49 @@
                 <li><a href="#">Categorias</a></li>
                 <li><a href="#">Platos</a></li>
                 <li><a href="#">Usuarios</a></li>
-                <li><a href="../../html/administrador/salir.php">Cerrar Sesi&oacute;n</a></li>
+                <li><a href="../../html/administrador/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user"></i></a></li>
             </ul>
         </nav>
     </header>
-
+        
     <div class="main">
         
         <div class="logo">
-            <a class="navbar-brand">
-                <img src="../../upload/connies_logo.png" style="width:500px; height: 400px;" alt="">
+            <h2 class="title_wel" style="text-transform:uppercase;">ADMIN <?php echo ''.$_SESSION["validarIngreso"].' '.$_SESSION["apellido"] .'!';?></h2>
+            <a class="navbar-brand" href="../../html/index.html">
+                <img class="log_n" src="../../upload/connies_logo.png" alt="">
             </a>
         </div>
         <div class="datos">
-            <h3>Bienvenido! <?php echo $_SESSION["validarIngreso"]; echo ' ' .$_SESSION['apellido'];?></h3>
             
             <div class="usuarios">
-                <h3>USUARIO</h3>
+                <h3>USUARIOS</h3>
+                <i class="fas fa-users fa-8x"></i>
+                <h3>1500</h3>
+            </div>
+            <div class="usuarios">
+                <h3>MESAS</h3>
+                <i class="fas fa-box fa-8x"></i>
+                <h3>50</h3>
+            </div>
+            <div class="usuarios">
+                <h3>RESERVACIONES</h3>
+                <i class="fas fa-clipboard-list fa-8x"></i>
+            </div>
+            <div class="usuarios">
+                <h3>CATEGORIAS</h3>
+                <a href="#"><i class="fas fa-clipboard-list fa-8x"></i></a>
+            </div>
+            <div class="usuarios">
+                <h3>PLATOS</h3>
+                <i class="fas fa-concierge-bell fa-8x"></i>
+            </div>
+            <div class="usuarios">
+                <h3>CUENTA</h3>
+                <i class="fas fa-user-circle fa-8x"></i>
             </div>
         </div>
+        
         <!-- <table class="table_mesas">
             <thead>
                 <tr>

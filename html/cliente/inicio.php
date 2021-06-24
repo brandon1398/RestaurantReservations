@@ -6,7 +6,7 @@
         </script>';
         return;
     }else{
-        if($_SESSION["validarIngreso"]!="ok"){
+        if($_SESSION["validarIngreso"]=="null"){
             echo '<script>
                 window.location="../login.php";
             </script>';
@@ -47,7 +47,7 @@
 
     <!-- Modernizer -->
     <script src="../../js/modernizer.js"></script>
-
+    <script src="https://kit.fontawesome.com/a615326ea3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/adm_style.css" type="text/css">
     <title>Restaurant Reservations</title>
 </head>
@@ -72,7 +72,7 @@
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="../../html/index.html">Mesas</a></li>  
-                                    <li><a href="../../html/administrador/salir.php">Cerrar Sesion</a></li>
+                                    <li><a href="../../html/administrador/salir.php"> Cerrar Sesi&oacute;n <i class="fas fa-user"></i> </a></li>
                                 </ul>
                             </div>
                         </nav>

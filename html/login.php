@@ -1,7 +1,18 @@
 <?php
     session_start();
-    $_SESSION['validarIngreso'] = "null";
-    $_SESSION['apellido'] = "null";
+    if(isset($_SESSION['validarIngreso'])){
+        if($_SESSION['validarIngreso']!='null'){
+            if($_SESSION['id'] == "1"){
+                echo '<script>window.location="../html/administrador/inicio.php"</script>;';
+            }else{
+                echo '<script>window.location="../html/cliente/inicio.php"</script>;';
+            }
+        }
+    }else{
+        $_SESSION['validarIngreso'] = "null";
+        $_SESSION['apellido'] = "null";
+        $_SESSION['id'] = "null";
+    }
     require_once "../php/controlador/formularios.controlador.php";
     require_once "../php/modelos/formularios.modelo.php";
 ?>
