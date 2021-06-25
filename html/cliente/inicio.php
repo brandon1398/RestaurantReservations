@@ -72,7 +72,7 @@
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="../../html/index.html">Mesas</a></li>  
-                                    <li><a href="../../html/administrador/salir.php"> Cerrar Sesi&oacute;n <i class="fas fa-user"></i> </a></li>
+                                    <li><a href="../../html/salir.php"> Cerrar Sesi&oacute;n <i class="fas fa-user"></i> </a></li>
                                 </ul>
                             </div>
                         </nav>
