@@ -4,7 +4,6 @@
         /* ----------------------------------
             Registro usuario - rol cliente
         ---------------------------------- */
-
         static public function ctrRegistroCliente(){
             if(isset($_POST['nombre'])){
                 $tabla = "usuarios";
@@ -59,6 +58,21 @@
                 }else{
                     echo '<div class="alert alert-danger">DATOS INCORRECTOS</div>';
                 }
+            }
+        }
+
+        /* ----------------------------------
+            Select users
+        ---------------------------------- */
+        static public function ctrSelectUsers(){
+            $tabla = "usuarios";
+            $tabla2 = "roles";
+            $respuesta = ModeloFormularios::mdlSelectUsers($tabla,$tabla2);
+            
+            if($respuesta){
+                return $respuesta;
+            }else{
+                return "null";
             }
         }
     }

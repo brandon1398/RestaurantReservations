@@ -1,6 +1,10 @@
 <?php
     require_once("../../php/modelos/db.php");
+    require_once("../../php/controlador/formularios.controlador.php");
+    require_once("../../php/modelos/formularios.modelo.php");
+    $usuarios = ControladorFormularios::ctrSelectUsers();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,22 +41,18 @@
 
     <script src="https://kit.fontawesome.com/a615326ea3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../css/adm_style.css?=<?php echo (rand()); ?>" type="text/css" >
-    <!-- <link rel="stylesheet" href="../../css/style.css?v=<?php echo (rand()); ?>" > -->
+
+   <!-- <link rel="stylesheet" href="../../css/style.css?v=<?php echo (rand()); ?>" > -->
     <title>Restaurant Reservations</title>
 </head>
 <body>
 
     <header>
-        <!-- <div class="logo">
-            <a class="navbar-brand js-scroll-trigger logo-header" href="#">
-                <img src="../../upload/connies_logo.png" style="width:100px; height: 40px;" alt="">
-            </a>
-        </div> -->
         <input type="checkbox" id="btn-menu">
         <label for="btn-menu"><i class="fas fa-bars fa-2x"></i></label>
         <nav class="menu">
             <ul class="nav">
-            <li><a href="../administrador/inicio.php">Inicio</a></li>
+                <li><a href="../administrador/inicio.php">Inicio</a></li>
                 <li><a href="#" class="active" id="mesas">Mesas</a></li>
                 <li><a href="#" id="menu">Menu</a></li>
                 <li><a href="#">Categor&iacute;as</a></li>
@@ -62,28 +62,178 @@
             </ul>
         </nav>
     </header>
-    <div class="main">
-        <div class="table_usr">
-            <table>
+
+    
+    <!-- main -->
+    <section class="main">
+        <article class="item_content">
+            <table class="table_user" id="tablaUser">
+                <caption>USUARIOS <input type="checkbox" id="addUser" name="addUser" value="modal"> <label for="addUser" class="caption_b">Agregar <i class="fas fa-user-plus"></i></button></caption>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>NOMBRE</th>
                         <th>APELLIDO</th>
+                        <th>TELEFONO</th>
                         <th>EMAIL</th>
+                        <th>ROL</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody> 
-
+                    <?php
+                        $txt = "";
+                        if(isset($usuarios)){
+                            foreach($usuarios as $user){
+                                $txt .= "<tr>";
+                                $txt .= '<td>'. $user['id_usuario'] . '</td>';
+                                $txt .= '<td>'. $user['nombre_usuario'] . '</td>';
+                                $txt .= '<td>'. $user['apellido_usuario'] . '</td>';
+                                $txt .= '<td>'. $user['telefono_usuario'] . '</td>';
+                                $txt .= '<td>'. $user['email_usuario'] .'</td>';
+                                $txt .= '<td>'. $user['nombre_rol'] . '</td>';
+                                $txt .= '<td><a href="#">Editar</a><span>   </span><a href="#">Eliminar</a></td>';
+                                $txt .= "</tr>";
+                            }
+                        }   
+                        echo $txt;               
+                    ?>
                 </tbody>
             </table>
+        </article>
+
+        <article class="modalCreate">
+            <label for="id">Nombre</label>
+            <label for="r">Telefono</label>
+            <label for="addUser"></label>
+        </article>
+
+        
+
+    </section>
+
+    <div class="footer-box pad-top-70" id="footer">
+    <div class="container">
+        <div class="row footer_l">
+            <div class="footer-in-main">
+                <div class="footer-logo">
+                    
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="footer-box-a">
+                        <h3>Acerca de Nosotros</h3>
+                        <p>Aenean commodo ligula eget dolor aenean massa. Cum sociis nat penatibu set magnis dis parturient montes.</p>
+                        <ul class="socials-box footer-socials pull-left">
+                            <li>
+                                <a href="#">
+                                    <div class="social-circle-border"><i class="fa  fa-facebook"></i></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="social-circle-border"><i class="fa fa-twitter"></i></div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="social-circle-border"><i class="fa fa-instagram"></i></div>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="footer-box-b">
+                        <h3>Nuevo Menu</h3>
+                        <ul>
+                            <li><a href="#">Por definir</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="footer-box-c">
+                        <h3>Cont&aacute;ctanos</h3>
+                        <p>
+                            <i class="fa fa-map-signs" aria-hidden="true"></i>
+                            <span>Universidad del Azuay</span>
+                        </p>
+                        <p>
+                            <i class="fa fa-mobile" aria-hidden="true"></i>
+                            <span>
+                            +593 096 362 1024
+                        </span>
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span><a href="mailto:brando@es.uazuay.edu.ec?">brando@es.uazuay.edu.ec</a></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="footer-box-d">
+                        <h3>Horarios de Atenci&oacute;n</h3>
+
+                        <ul>
+                            <li>
+                                <p>Lunes - Jueves </p>
+                                <span> 11:00 AM - 9:00 PM</span>
+                            </li>
+                            <li>
+                                <p>Viernes - Domingo </p>
+                                <span>  11:00 AM - 5:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+
+    
 
     <!-- JS -->
     <script src="../../js/all.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/custom.js"></script>
     <script src="../../js/javascript.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- table search -->
+    <script>
+        $(document).ready(function() {
+            $('#tablaUser').DataTable({
+                        "language": {
+                        "emptyTable":			"No hay datos disponibles en la tabla.",
+                        "info":		   		"Del _START_ al _END_ de _TOTAL_ ",
+                        "infoEmpty":			"Mostrando 0 registros de un total de 0.",
+                        "infoFiltered":			"(filtrados de un total de _MAX_ registros)",
+                        "infoPostFix":			" registros!",
+                        "lengthMenu":			"Mostrar registros _MENU_",
+                        "loadingRecords":		"Cargando...",
+                        "processing":			"Procesando...",
+                        "search":			"Buscar:",
+                        "searchPlaceholder":		"Dato para buscar",
+                        "zeroRecords":			"No se han encontrado coincidencias.",
+                        "paginate": {
+                            "first":			"Primera",
+                            "last":				"Última",
+                            "next":				"Siguiente",
+                            "previous":			"Anterior"
+                        },
+                        "aria": {
+                            "sortAscending":	"Ordenación ascendente",
+                            "sortDescending":	"Ordenación descendente"
+                }}
+            });
+        });
+                
+                
+    </script>
+   
 </body>
 </html>

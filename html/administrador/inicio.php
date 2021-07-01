@@ -120,7 +120,6 @@
         </div>
     </div>
     
-    <!-- </div> -->
 
     <div class="footer-box pad-top-70" id="footer">
     <div class="container">

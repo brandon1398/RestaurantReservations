@@ -1,15 +1,12 @@
 <?php
-    require_once "../php/modelos/conexion.php";
+    
     class ModeloFormularios{
 
         /* ----------------------------------
             Register user - rol client
         ---------------------------------- */
         static public function mdlRegistroCliente($tabla, $datos){
-            #$consulta = "INSERT INTO usuarios (nombre_usuario, apellido_usuario, telefono_usuario,email_usuario,password_usuario,status_usuario,id_rol_fk) VALUES (:nombre, :apellido, :telefono,:email,:password,'1','2')";
-
-            /*prepare: prepara una sentencia sql para ser ejecutada por el metodo PDOStatement::execute()
-            Ayuda a prevenir inyecciones SQL */
+            require_once "../php/modelos/conexion.php";
 
             $stmt = Conexion::conectar() -> prepare("INSERT INTO $tabla(nombre_usuario, apellido_usuario, telefono_usuario,email_usuario,password_usuario,status_usuario,id_rol_fk) 
             VALUES (:nombre, :apellido, :telefono,:email,:password,'1','2')");
@@ -33,7 +30,7 @@
             Login user
         ---------------------------------- */
         static public function mdlLoginUser($tabla, $item, $valor){
-           
+            require_once "../php/modelos/conexion.php";           
             if($item == null && $valor == null){
                 $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla ORDER BY id_usuario DESC");
                 $stmt -> execute();
@@ -48,6 +45,22 @@
 
             $stmt->close();
             $stmt = null;
+        }
+
+        /* ----------------------------------
+            Select users
+        ---------------------------------- */
+
+        static public function mdlSelectUsers($tabla,$tabla2){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla INNER JOIN $tabla2 ON id_rol_fk=id_rol and status_usuario = 1 ORDER BY id_usuario");
+            $stmt -> execute();
+            $num = $stmt->rowCount();
+            if($num > 0){
+                return $stmt -> fetchAll();
+            }else{
+                return null;
+            }
         }
     }
 
