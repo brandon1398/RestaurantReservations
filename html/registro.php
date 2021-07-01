@@ -197,6 +197,10 @@
                         <p>
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             <span><a href="mailto:brando@es.uazuay.edu.ec?">brando@es.uazuay.edu.ec</a></span>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span><a href="mailto:maria@es.uazuay.edu.ec?">maria@es.uazuay.edu.ec</a></span>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span><a href="mailto:paul@es.uazuay.edu.ec?">paul@es.uazuay.edu.ec</a></span>
                         </p>
                     </div>
                 </div>

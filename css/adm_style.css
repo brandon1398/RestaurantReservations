@@ -39,6 +39,10 @@ i.fas:hover{
     cursor: pointer;
 }
 
+i.fas:hover i.fas:hover::before{
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.6s;
+}
 input#btn-menu, header label{display: none;}
 
 
