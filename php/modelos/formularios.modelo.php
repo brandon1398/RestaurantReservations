@@ -116,6 +116,42 @@
             $stmt->close();
             $stmt=null;
         }
+
+        /* ----------------------------------
+            Search user for id
+        ---------------------------------- */
+        static public function mdlSelectUserId($tabla, $valor){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla WHERE id_usuario=:id");
+            $stmt -> bindParam(":id",$valor,PDO::PARAM_INT);
+            if($stmt->execute()){
+                return $stmt -> fetch();
+            }else{
+                return null;
+            }
+        }
+
+        /* ----------------------------------
+            update user
+        ---------------------------------- */
+        static public function mdlUpdateUser($tabla,$data){
+            require_once("../../php/modelos/conexion.php");
+            $stmt = Conexion::conectar() -> prepare("UPDATE $tabla SET nombre_usuario=:nombre, apellido_usuario=:apellido, telefono_usuario=:telefono, email_usuario=:email, password_usuario=:password_u, id_rol_fk=:rol_fk WHERE id_usuario=:id") ;
+            $stmt -> bindParam(":nombre",$data["nombre_usuario"],PDO::PARAM_STR);
+            $stmt -> bindParam(":apellido",$data["apellido_usuario"],PDO::PARAM_STR);
+            $stmt -> bindParam(":telefono",$data["telefono_usuario"],PDO::PARAM_STR);
+            $stmt -> bindParam(":email",$data["email_usuario"],PDO::PARAM_STR);
+            $stmt -> bindParam(":password_u",$data["password"],PDO::PARAM_STR);
+            $stmt -> bindParam(":rol_fk",$data["rol_fk"],PDO::PARAM_INT);
+            $stmt -> bindParam(":id",$data["id_usuario"],PDO::PARAM_INT);
+            
+            if($stmt -> execute()){
+                return "ok";
+            }else{
+                print_r(Conexion::conectar->errorInfo());
+                return "null";
+            }
+        }
     }
 
 ?>

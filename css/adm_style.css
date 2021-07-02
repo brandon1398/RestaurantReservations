@@ -498,16 +498,19 @@ section.modalCreate{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.50);
+    background-color: rgba(0, 0, 0, 0.80);
     transition: all .6ms ease;
     visibility: hidden;
+    opacity: 0;
+   /*  transform: translateY(-50%); */
 }  
 
 article.contenedor{
     width: 500px;
-    height: 450px;
+    height: 550px;
     background-color: rgb(0, 0, 0);
     box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
+    /* box-shadow: 1px 7px 20px rgba(255, 251, 251, 0.6); */
     border-radius: 10px;
 }
 
@@ -517,13 +520,15 @@ article.contenedor header{
     background-color: #e75b1e;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    font-family: georgia;
+    font-size: 30px;
 }
 
 article.contenedor label.x{
     position: relative;
     display: inline;
     left: 92%;
-    top: -9%;
+    top: -8.5%;
     font-size: 22px;
     cursor: pointer;
     display: inline;
@@ -536,11 +541,18 @@ div.contenido{
     display: flex;
     text-align: center;
     justify-content: center;
+    font-family: georgia;
+    font-size: 20px;
+    padding-bottom: 10px;
 }
 
 
 input#addUser:checked ~ section.modalCreate{
     visibility: visible;
+    opacity: 1;
+    transition: all 1s ease;
+    /* transform: translateY(0%);
+    transition: all 1s ease; */
 } 
 
 /* ------------------
@@ -576,6 +588,53 @@ input:focus{
     border: 2px solid #e75b1e;
     color: rgb(0, 0, 0);
 }
+
+
+/* ------------------
+    form edit user
+------------------ */
+section.editUser{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+article.content{
+    position: relative;
+    display: flexbox;
+    width: 500px;
+    height: 600px;
+    background-color: rgb(22, 21, 21); 
+    border-radius: 10px;
+    box-shadow: 4px 8px 25px red;
+}
+article.content header{
+    position: relative;
+    background: #e75b1e;
+    padding: 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+header.title_edit{
+    font-family: georgia;
+    font-size: 30px;
+}
+
+a.a_edit_u{
+    text-decoration: none;
+    background: #e75b1e;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    width: 150px;
+    height: 30px;
+    border: none;
+
+}
+
 
 /* ------------------
     footer

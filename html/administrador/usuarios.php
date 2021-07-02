@@ -95,7 +95,8 @@
                                     <td><?php echo $user["nombre_rol"]; ?></td>
                                     <td>
                                         <form method="POST">
-                                            <a href="#" class="btn btn-warning fas fa-pencil-alt"></a>
+                                            <a href="../../html/administrador/editar.php?id=<?php echo $user["id_usuario"]; ?>" class="btn btn-warning fas fa-pencil-alt"></a>
+                                         
                                             <input type="hidden" value="<?php echo $user["id_usuario"]; ?>" name="deleteUser">
                                             <button onclick="return eliminar();" type="submit" class="btn btn-danger fas fa-trash-alt fa-1x"></button>
                                             <?php 
@@ -125,7 +126,7 @@
     <section class="modalCreate">
         <article class="contenedor">
             <header>NUEVO USUARIO</header>
-            <label class="x" for="addUser">X</label>
+            <label class="x fas fa-window-close" for="addUser"></label>
             <div class="contenido">
             <form class="formClass" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
                 <label for="nombre">Nombre</label>

@@ -126,6 +126,44 @@
                 }
             }
         }
+
+        /* ----------------------------------
+            Search user
+        ---------------------------------- */
+        static public function ctrSelectUserId($valor){
+            if(isset($valor)){
+                $tabla = "usuarios";
+                $respuesta = ModeloFormularios::mdlSelectUserId($tabla, $valor);
+                return $respuesta;
+            }
+        }
+
+        /* ----------------------------------
+            Update user
+        ---------------------------------- */
+        static public function ctrUpdateUser(){
+            if(isset($_POST["actualizar"])){
+                $valor = $_POST['nombre'];
+
+                if($_POST['passwordNew'] != ""){
+                    $password = $_POST['passwordNew'];
+                }else{
+                    $password = $_POST['passwordOld'];
+                }
+                $tabla = "usuarios";
+                $data = array("id_usuario" => $_POST["id"],
+                            "nombre_usuario" => $_POST["nombre"],
+                            "apellido_usuario" => $_POST["lastName"],
+                            "telefono_usuario" => $_POST["phone"],
+                            "email_usuario" => $_POST["email"],
+                            "password" => $password,
+                            "rol_fk" => $_POST["rol"]);
+
+                $respuesta = ModeloFormularios::mdlUpdateUser($tabla,$data);
+                return $respuesta;
+                
+            }
+        }
     }
 
 ?>
