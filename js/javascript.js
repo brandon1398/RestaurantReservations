@@ -41,3 +41,12 @@ function validateFormLogin(){
     }
     return band;
 }
+
+function eliminar(){
+    alert("hola");
+    if(confirm('Desea eliminar el usuario?')){
+        return true;
+    }else{
+        return false;
+    }
+}

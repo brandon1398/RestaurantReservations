@@ -18,6 +18,20 @@
             }
         }
 
+        static public function ctrRegistroClienteAdmin(){
+            if(isset($_POST['nombre'])){
+                $tabla = "usuarios";
+                $datos = array("nombre" => $_POST['nombre'],
+                "apellido" => $_POST['apellido'],
+                "telefono" => $_POST['telefono'],
+                "email" => $_POST['email'],
+                "password" => $_POST['password'],
+                "rol" => $_POST['rol']);
+                $respuesta = ModeloFormularios::mdlRegistroClienteAdmin($tabla,$datos);
+                return $respuesta;
+            }
+        }
+
         /* ----------------------------------
             Login user
         ---------------------------------- */
@@ -32,6 +46,8 @@
                         $_SESSION["validarIngreso"] = $respuesta["nombre_usuario"];
                         $_SESSION["apellido"] = $respuesta["apellido_usuario"];
                         $_SESSION['id'] = $respuesta["id_usuario"];
+                        $_SESSION['rol_fk'] = $respuesta["id_rol_fk"];
+
                         if($respuesta["id_rol_fk"] == 1){
                             echo '<script>
                                     if(window.history.replaceState){
@@ -39,7 +55,7 @@
                                     }
                                     window.location = "../html/administrador/inicio.php";
                                 </script>';
-                        }else if($respuesta["id_rol_fk"] == 2){
+                        }else{
                             echo '<script>
                                 if(window.history.replaceState){
                                     window.history.replaceState(null,null,window.location.href);
@@ -73,6 +89,41 @@
                 return $respuesta;
             }else{
                 return "null";
+            }
+        }
+
+        /* ----------------------------------
+            Select roles
+        ---------------------------------- */
+        static public function ctrSelectRoles(){
+            $tabla = "roles";
+            $respuesta = ModeloFormularios::mdlSelectRoles($tabla);
+            if($respuesta){
+                return $respuesta;
+            }else{
+                return "null";
+            }
+        }
+
+        /* ----------------------------------
+            Delete user
+        ---------------------------------- */
+         public function ctrDeleteUser(){
+            if(isset($_POST['deleteUser'])){
+                $tabla = "usuarios";
+                $valor = $_POST['deleteUser'];
+                $respuesta = ModeloFormularios::mdlDeleteUser($tabla, $valor);
+            }  
+            
+            if(isset($respuesta)){
+                if($respuesta == "ok"){
+                    echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                        window.location = "../../html/administrador/usuarios.php";
+                    </script>;';
+                }
             }
         }
     }

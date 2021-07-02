@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['validarIngreso'])){
         if($_SESSION['validarIngreso']!='null'){
-            if($_SESSION['id'] == "1"){
+            if($_SESSION['rol_fk'] == "1"){
                 echo '<script>window.location="../html/administrador/inicio.php"</script>;';
             }else{
                 echo '<script>window.location="../html/cliente/inicio.php"</script>;';
@@ -12,6 +12,7 @@
         $_SESSION['validarIngreso'] = "null";
         $_SESSION['apellido'] = "null";
         $_SESSION['id'] = "null";
+        $_SESSION['rol_fk'] = "null";
     }
     require_once "../php/controlador/formularios.controlador.php";
     require_once "../php/modelos/formularios.modelo.php";
@@ -105,10 +106,6 @@
                                     <input type="text" class="req" id="nombre" name="nombre" pattern="[A-Z][a-z]+">
                                     <span id="asterisco1" class="nor">*</span>
                                     <br><br>
-                                    <!-- <label for="email">Email</label>
-                                    <input type="email" id="email" name="email">
-                                    <span id="asterisco4" class="nor">*</span>
-                                    <br><br> -->
                                     <label for="password">Contraseña</label>
                                     <input type="password" placeholder="**************" name="password" id="password">
                                     <span id="asterisco5" class="nor">*</span>

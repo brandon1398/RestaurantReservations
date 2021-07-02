@@ -875,6 +875,7 @@ form label{
     color: #fff;
     font-size: 15px;
     position: relative;
+    text-align: left;
 }
 
 form input{

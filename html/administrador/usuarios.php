@@ -1,8 +1,10 @@
 <?php
-    require_once("../../php/modelos/db.php");
-    require_once("../../php/controlador/formularios.controlador.php");
-    require_once("../../php/modelos/formularios.modelo.php");
+    require_once "../../php/modelos/conexion.php";
+    require_once "../../php/controlador/formularios.controlador.php";
+    require_once "../../php/modelos/formularios.modelo.php";
+    
     $usuarios = ControladorFormularios::ctrSelectUsers();
+    $roles = ControladorFormularios::ctrSelectRoles();
 ?>
 
 
@@ -67,14 +69,14 @@
     <!-- main -->
     <section class="main">
         <article class="item_content">
-            <table class="table_user" id="tablaUser">
-                <caption>USUARIOS <input type="checkbox" id="addUser" name="addUser" value="modal"> <label for="addUser" class="caption_b">Agregar <i class="fas fa-user-plus"></i></button></caption>
+            <table class="table_user display" id="tablaUser">
+                <caption>USUARIOS<label for="addUser" class="caption_b">Agregar <i class="fas fa-user-plus"></i></label></caption>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>NOMBRE</th>
                         <th>APELLIDO</th>
-                        <th>TELEFONO</th>
+                        <th>TEL&Eacute;FONO</th>
                         <th>EMAIL</th>
                         <th>ROL</th>
                         <th>ACCIONES</th>
@@ -82,35 +84,101 @@
                 </thead>
                 <tbody> 
                     <?php
-                        $txt = "";
-                        if(isset($usuarios)){
-                            foreach($usuarios as $user){
-                                $txt .= "<tr>";
+                        if(isset($usuarios)):
+                            foreach($usuarios as $user): ?>
+                                <tr>
+                                    <td><?php echo $user["id_usuario"]; ?></td>
+                                    <td><?php echo $user["nombre_usuario"]; ?></td>
+                                    <td><?php echo $user["apellido_usuario"]; ?></td>
+                                    <td><?php echo $user["telefono_usuario"]; ?></td>
+                                    <td><?php echo $user["email_usuario"]; ?></td>
+                                    <td><?php echo $user["nombre_rol"]; ?></td>
+                                    <td>
+                                        <form method="POST">
+                                            <a href="#" class="btn btn-warning fas fa-pencil-alt"></a>
+                                            <input type="hidden" value="<?php echo $user["id_usuario"]; ?>" name="deleteUser">
+                                            <button onclick="return eliminar();" type="submit" class="btn btn-danger fas fa-trash-alt fa-1x"></button>
+                                            <?php 
+                                                $eliminar = new ControladorFormularios();
+                                                $eliminar -> ctrDeleteUser();
+                                            ?>
+                                        </form>                              
+                                    </td>
+                                </tr>                               
+                                
+                               <!--  $txt .= "<tr>";
                                 $txt .= '<td>'. $user['id_usuario'] . '</td>';
                                 $txt .= '<td>'. $user['nombre_usuario'] . '</td>';
                                 $txt .= '<td>'. $user['apellido_usuario'] . '</td>';
                                 $txt .= '<td>'. $user['telefono_usuario'] . '</td>';
                                 $txt .= '<td>'. $user['email_usuario'] .'</td>';
                                 $txt .= '<td>'. $user['nombre_rol'] . '</td>';
-                                $txt .= '<td><a href="#">Editar</a><span>   </span><a href="#">Eliminar</a></td>';
-                                $txt .= "</tr>";
-                            }
-                        }   
-                        echo $txt;               
-                    ?>
+                                $txt .= "</tr>"; */ -->
+                            <?php endforeach ?>
+                        <?php endif; ?>                                      
+                   
                 </tbody>
             </table>
         </article>
-
-        <article class="modalCreate">
-            <label for="id">Nombre</label>
-            <label for="r">Telefono</label>
-            <label for="addUser"></label>
-        </article>
-
-        
-
     </section>
+    <input type="checkbox" id="addUser">
+    <section class="modalCreate">
+        <article class="contenedor">
+            <header>NUEVO USUARIO</header>
+            <label class="x" for="addUser">X</label>
+            <div class="contenido">
+            <form class="formClass" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="req" id="nombre" name="nombre" pattern="[A-Z][a-z]+">
+                <span id="asterisco1" class="nor">*</span>
+                <br><br>
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" pattern="[A-Z][a-z]+">
+                <span id="asterisco2" class="nor">*</span>
+                <br><br>
+                <label for="telefono">Tel&eacute;fono</label>
+                <input type="number"  id="telefono" name="telefono" pattern="[0-9]{10}">
+                <span id="asterisco3" class="nor">*</span>
+                <br><br>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <span id="asterisco4" class="nor">*</span>
+                <br><br>
+                <label for="password">Contraseña</label>
+                <input type="password" placeholder="**************" name="password" id="password">
+                <span id="asterisco5" class="nor">*</span>
+                <br><br>
+                <label for="rol" style="text-align: left;">Rol</label>
+                <select name="rol" id="rol">
+                    <?php
+                        foreach($roles as $rol){
+                            echo "<option value={$rol['id_rol']}>{$rol['nombre_rol']}</option>";
+                        }
+                    ?>
+                </select>
+                <br><br>
+
+                <?php
+                    $registro = ControladorFormularios::ctrRegistroClienteAdmin();
+                    if($registro == "ok"){
+                        // limpiamos las variables
+                        echo '<script>
+                            if(window.history.replaceState){
+                                window.history.replaceState(null, null, window.location="../../html/administrador/usuarios.php");
+                            }
+                        </script>';                                             
+                    }
+                ?>
+                <input class="btn_reg" type="submit" value="Registrar">
+                <br><br>
+            </form>
+            </div>
+        </article>
+    </section>
+
+    <!-- <section class="modalCreate">
+
+    </section> -->
 
     <div class="footer-box pad-top-70" id="footer">
     <div class="container">
@@ -228,12 +296,23 @@
                         "aria": {
                             "sortAscending":	"Ordenación ascendente",
                             "sortDescending":	"Ordenación descendente"
-                }}
+                        }
+                    },
+                    "lengthMenu": [5, 10, 20, 50],
+                    scrollY: '40vh'
             });
-        });
-                
-                
+        });   
     </script>
-   
+
+
+    <script>
+        function eliminar(){
+            if(confirm('Desea eliminar el usuario?')){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
