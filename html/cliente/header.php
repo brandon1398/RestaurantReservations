@@ -7,14 +7,13 @@
     $roles = ControladorFormularios::ctrSelectRoles();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
 
@@ -42,21 +41,25 @@
 
 
     <script src="https://kit.fontawesome.com/a615326ea3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../css/adm_style.css?=<?php echo (rand()); ?>" type="text/css" >
-
-   <!-- <link rel="stylesheet" href="../../css/style.css?v=<?php echo (rand()); ?>" > -->
+    <link rel="stylesheet" href="../../css/cli_style.css?=<?php echo (rand()); ?>" type="text/css" >
+    <!-- <link rel="stylesheet" href="../../css/style.css?v=<?php echo (rand()); ?>" > -->
     <title>Restaurant Reservations</title>
 </head>
 <body>
-
+    
     <header>
+        <!-- <div class="logo">
+            <a class="navbar-brand js-scroll-trigger logo-header" href="#">
+                <img src="../../upload/connies_logo.png" style="width:100px; height: 40px;" alt="">
+            </a>
+        </div> -->
         <input type="checkbox" id="btn-menu">
         <label for="btn-menu"><i class="fas fa-bars fa-2x"></i></label>
         <nav class="menu">
-            <ul class="nav">
-                <li><a href="../cliente/inicio.php">Inicio</a></li>
+            <ul class="nav">         
                 <li><a href="#">Reservaciones</a></li>
                 <li><a href="#">Pedidos</a></li>
+                <li><a href="#">Menu</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
         </nav>
