@@ -3,8 +3,7 @@
     require_once "../../php/controlador/formularios.controlador.php";
     require_once "../../php/modelos/formularios.modelo.php";
     
-    $usuarios = ControladorFormularios::ctrSelectUsers();
-    $roles = ControladorFormularios::ctrSelectRoles();
+    $mesas = ControladorFormularios::ctrSelectMesas();
 ?>
 
 
@@ -55,7 +54,7 @@
         <nav class="menu">
             <ul class="nav">
                 <li><a href="../administrador/inicio.php">Inicio</a></li>
-                <li><a href="../administrador/mesas.php" class="active" id="mesas">Mesas</a></li>
+                <li><a href="#" class="active" id="mesas">Mesas</a></li>
                 <li><a href="#" id="menu">Menu</a></li>
                 <li><a href="#">Categor&iacute;as</a></li>
                 <li><a href="#">Platos</a></li>
@@ -70,51 +69,37 @@
     <section class="main">
         <article class="item_content">
             <table class="table_user display" id="tablaUser">
-                <caption>USUARIOS<label for="addUser" class="caption_b">Agregar <i class="fas fa-user-plus"></i></label></caption>
+                <caption>MESAS<label for="addUser" class="caption_b">Agregar <i class="fas fa-plus"></i></label></caption>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>APELLIDO</th>
-                        <th>TEL&Eacute;FONO</th>
-                        <th>EMAIL</th>
-                        <th>ROL</th>
+                        <th>Nº MESA</th>
+                        <th>MAX PERSONAS</th>
+                        <th>ESTADO</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody> 
                     <?php
-                        if(isset($usuarios)):
-                            foreach($usuarios as $user): ?>
+                        if(isset($mesas)):
+                            foreach($mesas as $mesa): ?>
                                 <tr>
-                                    <td><?php echo $user["id_usuario"]; ?></td>
-                                    <td><?php echo $user["nombre_usuario"]; ?></td>
-                                    <td><?php echo $user["apellido_usuario"]; ?></td>
-                                    <td><?php echo $user["telefono_usuario"]; ?></td>
-                                    <td><?php echo $user["email_usuario"]; ?></td>
-                                    <td><?php echo $user["nombre_rol"]; ?></td>
+                                    
+                                    <td><?php echo $mesa["numero_mesa"]; ?></td>
+                                    <td><?php echo $mesa["personas_mesa"]; ?></td>
+                                    <td><?php echo $mesa["estado_mesa"]; ?></td>
                                     <td>
                                         <form method="POST">
-                                            <a href="../../html/administrador/editar.php?id=<?php echo $user["id_usuario"]; ?>" class="btn btn-warning fas fa-pencil-alt"></a>
+                                            <a href="../../html/administrador/editar_mesa.php?id=<?php echo $mesa["id_mesa"]; ?>" class="btn btn-warning fas fa-pencil-alt"></a>
                                          
-                                            <input type="hidden" value="<?php echo $user["id_usuario"]; ?>" name="deleteUser">
+                                            <input type="hidden" value="<?php echo $mesa["id_mesa"]; ?>" name="deleteMesa">
                                             <button onclick="return eliminar();" type="submit" class="btn btn-danger fas fa-trash-alt fa-1x"></button>
                                             <?php 
                                                 $eliminar = new ControladorFormularios();
-                                                $eliminar -> ctrDeleteUser();
+                                                $eliminar -> ctrDeleteMesa();
                                             ?>
                                         </form>                              
                                     </td>
-                                </tr>                               
-                                
-                               <!--  $txt .= "<tr>";
-                                $txt .= '<td>'. $user['id_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['nombre_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['apellido_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['telefono_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['email_usuario'] .'</td>';
-                                $txt .= '<td>'. $user['nombre_rol'] . '</td>';
-                                $txt .= "</tr>"; */ -->
+                                </tr>                   
                             <?php endforeach ?>
                         <?php endif; ?>                                      
                    
@@ -125,47 +110,31 @@
     <input type="checkbox" id="addUser">
     <section class="modalCreate">
         <article class="contenedor">
-            <header>NUEVO USUARIO</header>
+            <header>NUEVA MESA</header>
             <label class="x fas fa-window-close" for="addUser"></label>
             <div class="contenido">
-            <form class="formClass" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="req" id="nombre" name="nombre" pattern="[A-Z][a-z]+">
+            <form class="formClass" method="POST" id="formulario" name="formulario">
+                
+                <label for="numero">Nº Mesa</label>
+                <input type="number" class="req" id="numero" name="numero">
                 <span id="asterisco1" class="nor">*</span>
                 <br><br>
-                <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" name="apellido" pattern="[A-Z][a-z]+">
+                <label for="personas">Max Personas</label>
+                <input type="number" id="personas" name="personas">
                 <span id="asterisco2" class="nor">*</span>
                 <br><br>
-                <label for="telefono">Tel&eacute;fono</label>
-                <input type="number"  id="telefono" name="telefono" pattern="[0-9]{10}">
-                <span id="asterisco3" class="nor">*</span>
+                <label for="estado">Estado </label>
+                <span style="color:#fff;font-size:15px;">Libre </span><input type="radio" id="personas" value="Libre" name="estado">
+                <span style="color:#fff;font-size:15px;">Ocupada </span><input type="radio" id="personas" value="Ocupada" name="estado">
+               
                 <br><br>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email">
-                <span id="asterisco4" class="nor">*</span>
-                <br><br>
-                <label for="password">Contraseña</label>
-                <input type="password" placeholder="**************" name="password" id="password">
-                <span id="asterisco5" class="nor">*</span>
-                <br><br>
-                <label for="rol" style="text-align: left;">Rol</label>
-                <select name="rol" id="rol">
-                    <?php
-                        foreach($roles as $rol){
-                            echo "<option value={$rol['id_rol']}>{$rol['nombre_rol']}</option>";
-                        }
-                    ?>
-                </select>
-                <br><br>
-
                 <?php
-                    $registro = ControladorFormularios::ctrRegistroClienteAdmin();
+                    $registro = ControladorFormularios::ctrRegistroMesasAdmin();
                     if($registro == "ok"){
                         // limpiamos las variables
                         echo '<script>
                             if(window.history.replaceState){
-                                window.history.replaceState(null, null, window.location="../../html/administrador/usuarios.php");
+                                window.history.replaceState(null, null, window.location="../../html/administrador/mesas.php");
                             }
                         </script>';                                             
                     }
@@ -177,9 +146,6 @@
         </article>
     </section>
 
-    <!-- <section class="modalCreate">
-
-    </section> -->
 
     <div class="footer-box pad-top-70" id="footer">
     <div class="container">
@@ -308,7 +274,7 @@
 
     <script>
         function eliminar(){
-            if(confirm('Desea eliminar el usuario?')){
+            if(confirm('Desea eliminar la mesa?')){
                 return true;
             }else{
                 return false;

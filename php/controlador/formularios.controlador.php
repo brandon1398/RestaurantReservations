@@ -164,6 +164,89 @@
                 
             }
         }
+
+
+        /* ------------ MESAS ------------- */
+
+
+        /* ----------------------------------
+            Select mesas
+        ---------------------------------- */
+        static public function ctrSelectMesas(){
+            $tabla = "mesas";
+            $respuesta = ModeloFormularios::mdlSelectMesas($tabla);
+            
+            if($respuesta){
+                return $respuesta;
+            }else{
+                return "null";
+            }
+        }
+
+        /* ----------------------------------
+            Registro mesas
+        ---------------------------------- */
+
+        static public function ctrRegistroMesasAdmin(){
+            if(isset($_POST['numero'])){
+                $tabla = "mesas";
+                $datos = array("numero" => $_POST['numero'],
+                "estado" => $_POST['estado'],
+                "personas" => $_POST['personas']);
+                $respuesta = ModeloFormularios::mdlRegistroMesasAdmin($tabla,$datos);
+                return $respuesta;
+            }
+        }
+
+        /* ----------------------------------
+            Select mesas for id
+        ---------------------------------- */
+        static public function ctrSelectMesasId($valor){
+            if(isset($valor)){
+                $tabla = "mesas";
+                $respuesta = ModeloFormularios::mdlSelectMesasId($tabla, $valor);
+                return $respuesta;
+            }
+        }
+
+        /* ----------------------------------
+            Update mesas
+        ---------------------------------- */
+        static public function ctrUpdateMesas(){
+            if(isset($_POST["actualizar"])){
+                $tabla = "mesas";
+                $data = array("id_mesa" => $_POST["id"],
+                            "numero_mesa" => $_POST['numero'],
+                            "personas_mesa" => $_POST['personas'],
+                            "estado_mesa" => $_POST['estado']);
+                
+                $respuesta = ModeloFormularios::mdlUpdateMesas($tabla,$data);
+                return $respuesta;
+                
+            }
+        }
+
+        /* ----------------------------------
+            Delete mesa
+        ---------------------------------- */
+        public function ctrDeleteMesa(){
+            if(isset($_POST['deleteMesa'])){
+                $tabla = "mesas";
+                $valor = $_POST['deleteMesa'];
+                $respuesta = ModeloFormularios::mdlDeleteMesa($tabla, $valor);
+            }  
+            
+            if(isset($respuesta)){
+                if($respuesta == "ok"){
+                    echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                        window.location = "../../html/administrador/mesas.php";
+                    </script>;';
+                }
+            }
+        }
     }
 
 ?>

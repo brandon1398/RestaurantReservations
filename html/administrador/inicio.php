@@ -68,7 +68,7 @@
         <label for="btn-menu"><i class="fas fa-bars fa-2x"></i></label>
         <nav class="menu">
             <ul class="nav">
-                <li><a href="#" class="active" id="mesas">Mesas</a></li>
+                <li><a href="../administrador/mesas.php" class="active" id="mesas">Mesas</a></li>
                 <li><a href="#" id="menu">Menu</a></li>
                 <li><a href="#">Categor&iacute;as</a></li>
                 <li><a href="#">Platos</a></li>
@@ -97,7 +97,7 @@
             </div>
             <div class="usuarios">
                 <h3>MESAS</h3>
-                <i class="fas fa-box fa-8x"></i>
+                <a href="../administrador/mesas.php"><i class="fas fa-box fa-8x"></i></a>
                 <h3>50</h3>
             </div>
             <div class="usuarios">
