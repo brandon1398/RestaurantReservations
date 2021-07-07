@@ -68,11 +68,11 @@
         <label for="btn-menu"><i class="fas fa-bars fa-2x"></i></label>
         <nav class="menu">
             <ul class="nav">
-                <li><a href="../administrador/mesas.php" class="active" id="mesas">Mesas</a></li>
-                <li><a href="#" id="menu">Menu</a></li>
+                <li><a href="../administrador/usuarios.php">Usuarios</a></li>
+                <li><a href="../administrador/mesas.php" class="active" id="mesas">Mesas</a></li>                
+                <li><a href="#" id="menu">Reservaciones</a></li>
                 <li><a href="#">Categor&iacute;as</a></li>
                 <li><a href="#">Platos</a></li>
-                <li><a href="../administrador/usuarios.php">Usuarios</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
         </nav>
