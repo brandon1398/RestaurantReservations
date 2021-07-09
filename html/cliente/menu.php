@@ -1,10 +1,24 @@
 <?php
+ session_start();
     require_once "../../php/modelos/conexion.php";
     require_once "../../php/controlador/formularios.controlador.php";
     require_once "../../php/modelos/formularios.modelo.php";
     
     $usuarios = ControladorFormularios::ctrSelectUsers();
     $roles = ControladorFormularios::ctrSelectRoles();
+    $mesas = ControladorFormularios::ctrSelectMesasLibre();
+    $mesasT = ControladorFormularios::ctrSelectMesas();
+    $listRes = ControladorFormularios::ctrSelectReservasId();
+    $listR = ControladorFormularios::ctrSelectReservas();
+    if(isset($listR) && !empty($listR)){
+        foreach($listR as $list){
+            if($_SESSION['id'] == $list['fk_id_usuario']){
+                $id_fk_usuario = $list['fk_id_usuario'];
+            }
+        }
+    }
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -48,15 +62,11 @@
 <body>
     
     <header>
-        <!-- <div class="logo">
-            <a class="navbar-brand js-scroll-trigger logo-header" href="#">
-                <img src="../../upload/connies_logo.png" style="width:100px; height: 40px;" alt="">
-            </a>
-        </div> -->
         <input type="checkbox" id="btn-menu">
         <label for="btn-menu"><i class="fas fa-bars fa-2x"></i></label>
         <nav class="menu">
-            <ul class="nav">            
+            <ul class="nav">   
+                <li><a href="inicio.php">Inicio</a></li>      
                 <li><a href="reservaciones.php">Reservaciones</a></li>
                 <li><a href="#">Pedidos</a></li>
                 <li><a href="menu.php">Menu</a></li>

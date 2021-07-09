@@ -79,7 +79,7 @@ nav.menu ul{
 nav.menu li a{
     text-transform: uppercase;
     color: #fff;
-    
+    font-family: georgia;
 }
 
 nav.menu li a:hover{
@@ -167,7 +167,7 @@ div.datos{
 h2{
     /* color: rgb(241, 86, 15, .8); */
     color: rgba(255, 255, 255, 0.8);
-    
+    font-family: georgia;
 }
 
 div.usuarios{
@@ -357,6 +357,7 @@ div.usuarios{
 
 h3{
     font-size: 15px;
+    font-family: georgia;
 }
 
 /* ------------------

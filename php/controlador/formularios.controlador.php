@@ -184,6 +184,20 @@
         }
 
         /* ----------------------------------
+            Select mesas libres
+        ---------------------------------- */
+        static public function ctrSelectMesasLibre(){
+            $tabla = "mesas";
+            $respuesta = ModeloFormularios::mdlSelectMesasLibre($tabla);
+            
+            if($respuesta){
+                return $respuesta;
+            }else{
+                return "null";
+            }
+        }
+
+        /* ----------------------------------
             Registro mesas
         ---------------------------------- */
 
@@ -246,6 +260,60 @@
                     </script>;';
                 }
             }
+        }
+
+        
+
+        /* ----------------------------------
+            reservar mesa
+        ---------------------------------- */
+        static public function ctrReservaMesa(){
+            if(isset($_POST['fecha'])){
+                $tabla = "reseva";
+                $datos = array("fecha" => $_POST['fecha'],
+                "hora" => $_POST['hora'],
+                "mesa" => $_POST['mesa']);
+                
+                $respuesta = ModeloFormularios::mdlReservaMesa($tabla,$datos);
+                return $respuesta;
+            }
+        }
+
+        static public function ctrSelectReservasId(){
+            if(isset($_SESSION['id'])){
+                $tabla = "reserva";
+                $respuesta = ModeloFormularios::mdlSelectReservasId($tabla,$_SESSION['id']);
+                return $respuesta;
+            }
+        }
+
+        static public function ctrSelectReservas(){
+            if(isset($_SESSION['id'])){
+                $tabla = "reserva";
+                $respuesta = ModeloFormularios::mdlSelectReservas($tabla);
+                return $respuesta;
+            }
+        }
+
+        public function ctrDeleteReserva(){
+            if(isset($_POST['deleteReserva'])){
+                $tabla = "reserva";
+                $valor = $_POST['deleteReserva'];
+                $mesa = $_POST['idMesa'];
+                $respuesta = ModeloFormularios::mdlDeleteReserva($tabla,$valor,$mesa);
+
+                if($respuesta=="ok"){
+                    echo "<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                        window.location = '../../html/cliente/reservaciones.php'
+                    </script>";
+                }else{
+                    echo "error";
+                }
+            }
+
         }
     }
 

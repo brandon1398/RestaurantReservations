@@ -43,7 +43,6 @@ function validateFormLogin(){
 }
 
 function eliminar(){
-    alert("hola");
     if(confirm('Desea eliminar el usuario?')){
         return true;
     }else{

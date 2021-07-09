@@ -30,11 +30,11 @@
         <div class="datos">
             <div class="usuarios">
                 <h3>RESERVACIONES</h3>
-                <i class="fas fa-clipboard-list fa-8x"></i>
+                <a href="reservaciones.php"><i class="fas fa-clipboard-list fa-8x"></i></a>
             </div>
             <div class="usuarios">
                 <h3>PEDIDOS</h3>
-                <a href="#"><i class="fas fa-clipboard-list fa-8x"></i></a>
+                <a href="#"><i class="fas fa-utensils fa-8x"></i></a>
             </div>
             <div class="usuarios">
                 <h3>MENU</h3>
@@ -47,6 +47,19 @@
             </div>
         </div>
     </div>
+
+    <section class="recl">
+        <h2 style="color:#000;">Ingrese un reclamo</h2>
+        <br>
+        <form action="" method="POST">
+            <textarea name="" id="" cols="80" rows="10">
+
+            </textarea>
+            <br><br>
+            <input type="submit" class="enviarReclamo">
+        </form>
+    </section>
+    <br>
     
 
 <!-- JS -->

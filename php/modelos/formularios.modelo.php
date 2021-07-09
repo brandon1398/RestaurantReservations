@@ -165,7 +165,23 @@
 
         static public function mdlSelectMesas($tabla){
             require_once "../../php/modelos/conexion.php";
-            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla ORDER BY id_mesa");
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla ORDER BY numero_mesa");
+            $stmt -> execute();
+            $num = $stmt->rowCount();
+            if($num > 0){
+                return $stmt -> fetchAll();
+            }else{
+                return null;
+            }
+        }
+
+        /* ----------------------------------
+            Select mesas libres
+        ---------------------------------- */
+
+        static public function mdlSelectMesasLibre($tabla){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla WHERE estado_mesa='Libre' ORDER BY numero_mesa");
             $stmt -> execute();
             $num = $stmt->rowCount();
             if($num > 0){
@@ -252,6 +268,109 @@
             $stmt->close();
             $stmt=null;
         }
+
+        /* ----------------------------------
+            Reserva mesa
+        ---------------------------------- */
+
+        static public function mdlReservaMesa($tabla,$datos){
+            require_once "../../php/modelos/conexion.php";
+            $usuario = $_SESSION['id'];
+            $mesa = $datos['mesa'];
+            $fecha = $datos['fecha'];
+            $hora = $datos['hora'];
+
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM reserva WHERE fecha_reserva=:fecha and hora_reserva=:hora
+            and fk_id_mesa=:mesa");
+
+            $stmt->bindParam(":fecha",$fecha,PDO::PARAM_STR);
+            $stmt->bindParam(":hora",$hora,PDO::PARAM_STR);
+            $stmt->bindParam(":mesa",$mesa,PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                $num = $stmt->rowCount();
+                if($num > 0){
+                    echo '<div class="alert alert-danger">Error, esta mesa ya se encuentra reservada esa fecha y hora!</div>';
+                }else{
+                    $stmt = Conexion::conectar() -> prepare("INSERT INTO reserva(fecha_reserva, hora_reserva, fk_id_usuario,fk_id_mesa)
+                    VALUES (:fecha,:hora,:id_usuario,:id_mesa)");
+                    $stmt->bindParam(":fecha",$datos["fecha"],PDO::PARAM_STR);
+                    $stmt->bindParam(":hora",$datos["hora"],PDO::PARAM_STR);
+                    $stmt->bindParam(":id_usuario",$usuario,PDO::PARAM_INT);
+                    $stmt->bindParam(":id_mesa",$datos["mesa"],PDO::PARAM_INT);
+
+                    if($stmt->execute()){
+
+                        $sql = Conexion::conectar() -> prepare("UPDATE mesas SET estado_mesa='Ocupada' WHERE id_mesa = :id");
+                        $sql -> bindParam(":id",$mesa,PDO::PARAM_INT);
+
+                        if($sql -> execute()){
+                            echo '<script>
+                            setTimeout(function(){
+                                <div class="alert alert-success">Mesa reservada exitosamante!</div>;
+                                },1500);
+                            </script>';
+                            return 'ok';
+                        }                       
+                        
+                    }else{
+                        print_r(Conexion::conectar()->errorInfo());
+                    }
+                     
+                    $stmt->close();
+                    $stmt=null;                    
+                }
+            }else{
+                print_r(Conexion::conectar()->errorInfo());
+            }
+            
+            
+           
+        } 
+        
+        /* ----------------------------------
+            Select users
+        ---------------------------------- */
+
+
+        static public function mdlSelectReservasId($tabla,$datos){
+            require_once "../../php/modelos/conexion.php";
+            $usuario = $_SESSION['id'];
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM `mesas` INNER JOIN reserva INNER JOIN usuarios WHERE fk_id_usuario = id_usuario and fk_id_usuario=$usuario and id_mesa = fk_id_mesa");
+            /* $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla INNER JOIN mesas ON fk_id_mesa = id_mesa and fk_id_usuario = $usuario"); */
+            if($stmt->execute()){
+                return $stmt -> fetchAll();
+            }else{
+                return null;
+            }
+        }
+
+        static public function mdlSelectReservas($tabla){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM `mesas` INNER JOIN reserva INNER JOIN usuarios ON id_usuario = fk_id_usuario and id_mesa=fk_id_mesa");
+            if($stmt->execute()){
+                return $stmt -> fetchAll();
+            }else{
+                return null;
+            }
+        }
+
+        static public function mdlDeleteReserva($tabla, $valor,$mesa){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("DELETE FROM $tabla WHERE id_reserva=:valor");
+            $stmt -> bindParam(":valor",$valor,PDO::PARAM_INT);
+            
+            if($stmt->execute()){
+                $sql = Conexion::conectar() -> prepare("UPDATE mesas SET estado_mesa='Libre' WHERE id_mesa=:mesa");
+                $sql -> bindParam(":mesa",$mesa,PDO::PARAM_INT);
+                if($sql->execute()){
+                    return "ok";
+                }else{
+                    return null;
+                }
+            }
+        }
+
     }
 
 ?>
