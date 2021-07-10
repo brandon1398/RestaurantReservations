@@ -38,7 +38,7 @@
             </div>
             <div class="usuarios">
                 <h3>MENU</h3>
-                <a href="../administrador/usuarios.php"><i class="fas fa-concierge-bell fa-8x"></i></a>
+                <a href="menu.php"><i class="fas fa-concierge-bell fa-8x"></i></a>
                
             </div>
             <div class="usuarios">

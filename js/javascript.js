@@ -49,3 +49,16 @@ function eliminar(){
         return false;
     }
 }
+
+function cambiarImg(){
+    var img = document.getElementById("img_menu");
+    var array = ['../../upload/plato1.jpg','../../upload/plato2.jpg','../../upload/bebida1.jpg','../../upload/bebida2.jpg'];
+    
+        for(var i=0;i<array.length;i++){
+            img.setAttribute("src",array[i])
+        }
+    
+}
+
+/* setInterval(cambiarImg,2000); */
+

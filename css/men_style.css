@@ -3,19 +3,20 @@
 }
 body{
 
-   /*  background-image: url("../upload/restaurante.jpg");
+    /* background-image: url("../upload/plato1.jpg"); */
+    background-image:radial-gradient(ellipse at center, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(../upload/plato1.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 100vh;
-    background-color: transparent; */
+    height: 50vh;
+    
     /* background: linear-gradient(to bottom right, #e75b1e, #dfcbc2); */
-    background: linear-gradient(to bottom right, rgb(247, 82, 33),rgb(228, 146, 121));
+    /* background: linear-gradient(to bottom right, rgb(247, 82, 33),rgb(228, 146, 121));
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     margin: 0;
-    height: 150vh;
+    height: 110vh; */
     /* background-image:radial-gradient(ellipse at center, rgba(0, 0, 0, 0.57) 0%,rgba(0, 0, 0, 0.87) 100%), url(../upload/r_l.jpg);
 	background-color:#111;background-position:center;background-repeat:no-repeat;background-size:cover; */
 }
@@ -1100,17 +1101,14 @@ section.menu_content{
     height: 120vh;
     text-align: center;
     font-family:  'nautilus_pompiliusregular';
-    background:#000;
+    /* background:rgba(0, 0, 0, 0.6); */
     height: 100vh;
     border: 10px;
-    opacity: 0.4;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
 }
-h2.title_menu_i{
-    margin: 30px;
-}
-h2.title_menu{
-    color: #000;
-}
+
 /* section.content_item_menu{
     position: relative;
     margin-left: 80px;
@@ -1124,3 +1122,198 @@ h2.title_menu{
 
 /* carousel */
 
+
+/* div.content{
+    background-color: red;
+    display: grid;
+    grid-column: auto auto auto;
+    position: relative;
+    float: left;
+    margin: 40px;
+    
+}
+
+section.content_item_menu{
+    position: absolute;
+    float: none;
+    top:300px;
+} */
+
+
+section.carousel{
+    position: absolute;
+    width: 100%;
+    height: 70vh;
+}
+
+section.carousel img{
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    background-repeat: no-repeat;
+    opacity: 0.9;  
+}
+
+
+/* menu */
+
+h2.title_menu{
+    position: relative;
+    color: rgb(202, 193, 189);
+    /* float: right; */
+    text-align: center;
+    top: 100px;
+    font-size: 45px;
+    text-transform: uppercase; 
+    font-family: 'nautilus_pompiliusregular';
+/*     text-shadow: 4px 7px rgb(56, 52, 52);*/
+}
+
+article.item_menu{
+    position: absolute;
+    display: block;
+    top: 300px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+section.item_carta{
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    align-items: center;
+    float: left;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    width: 100%;
+}
+section.item_carta h2{
+    font-family: 'nautilus_pompiliusregular';
+    font-size: 40px;
+    text-shadow: 4px 7px red;
+}
+
+.item_promo{
+    position: relative;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255 80 27);
+    width: 100%;
+    padding: 10px;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-top-right-radius: 20px;
+}
+
+section.item_carta .item_promo p{
+    font-size: 20px;
+}
+
+section.image-fluid{
+    position: relative;
+    display: flex;
+    float: left;
+}
+
+section.item_carta img{
+    width: 100%;
+    height: 350px;
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}
+/* section.carousel img:hover{
+    opacity: 0;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+ */
+
+h3.title_best{
+    position: relative;
+    color: rgb(255 77 0);
+    /* float: right; */
+    text-align: center;
+    top: 10px;
+    font-size: 60px;
+    text-transform: uppercase; 
+    font-family: 'nautilus_pompiliusregular';
+    /* text-shadow: 4px 7px #7d726f; */
+}
+
+section.item_carta form{
+    background: red;
+}
+
+section.item_carta form input.categoria_fondo_1{
+    float: left;
+    width: 48.5%;
+    height: 25vh;
+    margin:10px; 
+    background-image: url(../upload/plato1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid #000;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px rgb(24, 23, 23);
+    font-size: 50px;
+    border-radius: 10px;
+}
+section.item_carta form input.categoria_fondo_2{
+    float: left;
+    width: 48.5%;
+    height: 25vh;
+    margin:10px; 
+    background-image: url(../upload/plato2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid #000;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px rgb(24, 23, 23);
+    font-size: 50px;
+    border-radius: 10px;
+}
+section.item_carta form input.categoria_fondo_3{
+    float: left;
+    width: 48.5%;
+    height: 25vh;
+    margin:10px; 
+    background-image: url(../upload/plato3.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid #000;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px rgb(24, 23, 23);
+    font-size: 50px;
+    border-radius: 10px;
+}
+section.item_carta form input.categoria_fondo_4{
+    float: left;
+    width: 48.5%;    
+    height: 25vh;
+    margin:10px; 
+    background-image: url(../upload/bebida1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid #000;
+    color: rgb(255, 255, 255);
+    text-shadow: 4px 4px rgb(24, 23, 23);
+    font-size: 50px;
+    border-radius: 10px;
+}
+
+
+section.item_carta form input.categoria_fondo_1:hover,section.item_carta form input.categoria_fondo_2:hover,section.item_carta form input.categoria_fondo_3:hover, section.item_carta form input.categoria_fondo_4:hover{
+    background-image:radial-gradient(ellipse at center, rgba(255, 208, 0, 0.57) 0%,rgba(252, 80, 0, 0.87) 100%);
+    text-decoration: underline;
+    transition: all 2s ease;
+}
