@@ -72,10 +72,12 @@
     function modificar_usuarios($cnn,$id,$nombre,$apellido,$telefono,$email,$pass,$sta,$rol){
         $sql = "UPDATE usuarios SET  nombre_usuario= '$nombre',apellido_usuario= '$apellido',telefono_usuario= '$telefono',email_usuario= '$email',password_usuario= '$pass',status_usuario= '$sta' ,id_rol_fk= '$rol' WHERE id_usuario = '$id'";
 
-       if (mysqli_query($cnn, $sql)){
-    }else{
-        echo "Error" . mysqli_error($cnn);
-    }
+        if (mysqli_query($cnn, $sql)){
+            $_SESSION['validarIngreso'] = $nombre;
+            $_SESSION['apellido'] = $apellido;
+        }else{
+            echo "Error" . mysqli_error($cnn);
+        }
     }
 
 ?>
