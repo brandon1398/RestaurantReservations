@@ -37,7 +37,7 @@
                 <a href="#"><i class="fas fa-utensils fa-8x"></i></a>
             </div>
             <div class="usuarios">
-                <h3>MENU</h3>
+                <h3>CARTA</h3>
                 <a href="menu.php"><i class="fas fa-concierge-bell fa-8x"></i></a>
                
             </div>
@@ -49,12 +49,10 @@
     </div>
 
     <section class="recl">
-        <h2 style="color:#000;">Ingrese un reclamo</h2>
+        <h2 style="color:#000;">¿ALGUNA PREGUNTA?</h2>
         <br>
         <form action="" method="POST">
-            <textarea name="" id="" cols="80" rows="10">
-
-            </textarea>
+            <textarea name="" id="" cols="80" rows="10" placeholder="Cuéntanos en detalle..."></textarea>
             <br><br>
             <input type="submit" class="enviarReclamo">
         </form>

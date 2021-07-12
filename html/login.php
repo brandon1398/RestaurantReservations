@@ -77,10 +77,6 @@
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="../html/index.html">Inicio</a></li>
-                                    <li><a href="#">Men&uacute;</a></li>
-                                    <li><a href="#">Qui&eacute;nes Somos</a></li>                                    
-                                    <li><a href="#">Galer&iacute;a</a></li>
-                                    <li><a href="#">Reservaciones</a></li>
                                     <li><a href="#footer">Cont&aacute;ctanos</a></li>
                                 </ul>
                             </div>

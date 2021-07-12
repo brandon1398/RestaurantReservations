@@ -1049,15 +1049,15 @@ section.recl{
     position: absolute;
     top:740px;
     width: 100%;
-    font-family: georgia;
-    
+    font-family: 'nautilus_pompiliusregular';
     text-align: center;
 }
 
 form textarea{
     /* background: linear-gradient(335deg, rgb(255, 115, 0), rgb(243, 62, 8)); */
-     background: linear-gradient(to bottom right, rgb(255, 81, 0), rgba(219, 129, 87, 0.8));
-    color: #fff;
+    background: linear-gradient(to bottom right, rgb(248, 246, 246), rgba(230, 225, 223, 0.8));
+    color: #000;
+    font-family: 'nautilus_pompiliusregular';
     border: none;
     border-radius: 10px;
     box-shadow: 2px 5px 25px #805252;
