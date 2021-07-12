@@ -280,6 +280,35 @@
         }
 
         /* ----------------------------------
+            reservar mesa admin
+        ---------------------------------- */
+        static public function ctrReservaMesaAdmin(){
+            if(isset($_POST['fecha'])){
+                $tabla = "reseva";
+                $datos = array("cliente" => $_POST['cliente'],
+                "fecha" => $_POST['fecha'],
+                "hora" => $_POST['hora'],
+                "mesa" => $_POST['mesa']);
+                
+                $respuesta = ModeloFormularios::mdlReservaMesaAdmin($tabla,$datos);
+                if(isset($respuesta)){
+                    if($respuesta == "ok"){
+                        echo '<script>
+                            if(window.history.replaceState){
+                                window.history.replaceState(null, null, window.location.href);
+                            }
+                            setTimeout(function(){
+                                <div class="alert alert-success">Mesa reservada exitosamante!</div>;
+                            },3000);
+                            window.location = "../../html/administrador/reservaciones.php";
+                        </script>;';
+                    }
+                }
+                return $respuesta;
+            }
+        }
+
+        /* ----------------------------------
             select reservas id
         ---------------------------------- */
 
@@ -316,6 +345,25 @@
                             window.history.replaceState(null, null, window.location.href);
                         }
                         window.location = '../../html/administrador/reservaciones.php'
+                    </script>";
+                }else{
+                    echo "error";
+                }
+            }
+        }
+        public function ctrDeleteReservaClient(){
+            if(isset($_POST['deleteReserva'])){
+                $tabla = "reserva";
+                $valor = $_POST['deleteReserva'];
+                $mesa = $_POST['idMesa'];
+                $respuesta = ModeloFormularios::mdlDeleteReserva($tabla,$valor,$mesa);
+
+                if($respuesta=="ok"){
+                    echo "<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                        window.location = '../../html/cliente/reservaciones.php'
                     </script>";
                 }else{
                     echo "error";
@@ -392,6 +440,75 @@
                 }
             }
         } 
+
+         /* ----------------------------------
+            select CATEGORIAS
+        ---------------------------------- */
+        static public function ctrSelectCategorias(){
+            $tabla = "categoria";
+            $respuesta = ModeloFormularios::mdlSelectCategorias($tabla);
+            if(!empty($respuesta)){
+                return $respuesta;
+            }
+        }
+
+
+        /* ----------------- CATEGORIAS ------------------- */
+
+        /* ----------------------------------
+            insert CATEGORIAS
+        ---------------------------------- */
+        static public function ctrInsertCategoria(){
+            if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
+                $tabla = "categoria";
+                $nombre = $_POST['nombre'];
+                $respuesta = ModeloFormularios::mdlInsertCategoria($tabla,$nombre);
+                return $respuesta;
+            }   
+        }
+
+        /* ----------------------------------
+            delete CATEGORIAS
+        ---------------------------------- */
+
+        public function ctrDeleteCategoria(){
+            if(isset($_POST['deleteCategoria']) && !empty($_POST['deleteCategoria'])){
+                $tabla = "categoria";
+                $idCategoria = $_POST['deleteCategoria'];
+                $respuesta = ModeloFormularios::mdlDeleteCategoria($tabla,$idCategoria);
+                if($respuesta=="ok"){
+                    echo "<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null,null,window.location.href);
+                        }
+                        window.location = '../../html/administrador/categorias.php'
+                    </script>";
+                }
+            }
+        }
+
+        /* ----------------------------------
+            select categoria id
+        ---------------------------------- */
+        static public function ctrSelectCategoriasID($valor){
+            if(!empty($valor)){
+                $respuesta = ModeloFormularios::mdlSelectCategoriasID($valor);
+                return $respuesta;
+            }
+        }
+
+        /* ----------------------------------
+            update categoria
+        ---------------------------------- */
+        static public function ctrUpdateCategoria(){
+            if(isset($_POST['id']) && isset($_POST['nombre'])){
+                $tabla = "categoria";
+                $data = array("id_categoria" => $_POST['id'],
+                "nombre_categoria" => $_POST['nombre']);
+                $respuesta = ModeloFormularios::mdlUpdateCategoria($tabla,$data);
+                return $respuesta;
+            }
+        }
     }
 
 ?>

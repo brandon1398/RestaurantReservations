@@ -71,7 +71,7 @@
                 <li><a href="../administrador/usuarios.php">Usuarios</a></li>
                 <li><a href="../administrador/mesas.php" class="active" id="mesas">Mesas</a></li>                
                 <li><a href="../administrador/reservaciones.php" id="menu">Reservaciones</a></li>
-                <li><a href="#">Categor&iacute;as</a></li>
+                <li><a href="../administrador/categorias.php">Categor&iacute;as</a></li>
                 <li><a href="#">Platos</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
@@ -102,11 +102,11 @@
             </div>
             <div class="usuarios">
                 <h3>RESERVACIONES</h3>
-                <i class="fas fa-clipboard-list fa-8x"></i>
+                <a href="../administrador/reservaciones.php"><i class="fas fa-clipboard-list fa-8x"></i></a>
             </div>
             <div class="usuarios">
                 <h3>CATEGOR&Iacute;AS</h3>
-                <a href="#"><i class="fas fa-clipboard-list fa-8x"></i></a>
+                <a href="../administrador/categorias.php"><i class="fas fa-clipboard-list fa-8x"></i></a>
             </div>
             <div class="usuarios">
                 <h3>PLATOS</h3>
@@ -115,7 +115,7 @@
             </div>
             <div class="usuarios">
                 <h3>CUENTA</h3>
-                <i class="fas fa-user-circle fa-8x"></i>
+                <a href="../administrador/cuenta.php"><i class="fas fa-user-circle fa-8x"></i></a>
             </div>
         </div>
     </div>

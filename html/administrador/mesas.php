@@ -57,7 +57,7 @@
                 <li><a href="../administrador/usuarios.php">Usuarios</a></li>
                 <li><a href="../administrador/mesas.php" class="active" id="mesas">Mesas</a></li>
                 <li><a href="../administrador/reservaciones.php">Reservaciones</a></li>
-                <li><a href="#">Categor&iacute;as</a></li>
+                <li><a href="../administrador/categorias.php">Categor&iacute;as</a></li>
                 <li><a href="#">Platos</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
@@ -113,35 +113,34 @@
             <header>NUEVA MESA</header>
             <label class="x fas fa-window-close" for="addUser"></label>
             <div class="contenido">
-            <form class="formClass" method="POST" id="formulario" name="formulario">
-                
-                <label for="numero">Nº Mesa</label>
-                <input type="number" class="req" id="numero" name="numero">
-                <span id="asterisco1" class="nor">*</span>
-                <br><br>
-                <label for="personas">Max Personas</label>
-                <input type="number" id="personas" name="personas">
-                <span id="asterisco2" class="nor">*</span>
-                <br><br>
-                <label for="estado">Estado </label>
-                <span style="color:#fff;font-size:15px;">Libre </span><input type="radio" id="personas" value="Libre" name="estado">
-                <span style="color:#fff;font-size:15px;">Ocupada </span><input type="radio" id="personas" value="Ocupada" name="estado">
-               
-                <br><br>
-                <?php
-                    $registro = ControladorFormularios::ctrRegistroMesasAdmin();
-                    if($registro == "ok"){
-                        // limpiamos las variables
-                        echo '<script>
-                            if(window.history.replaceState){
-                                window.history.replaceState(null, null, window.location="../../html/administrador/mesas.php");
-                            }
-                        </script>';                                             
-                    }
-                ?>
-                <input class="btn_reg" type="submit" value="Registrar">
-                <br><br>
-            </form>
+                <form class="formClass" method="POST" id="formulario" name="formulario">
+                    
+                    <label for="numero">Nº Mesa</label>
+                    <input type="number" class="req" id="numero" name="numero">
+                    <span id="asterisco1" class="nor">*</span>
+                    <br><br>
+                    <label for="personas">Max Personas</label>
+                    <input type="number" id="personas" name="personas">
+                    <span id="asterisco2" class="nor">*</span>
+                    <br><br>
+                    <label for="estado">Estado </label>
+                    <span style="color:#fff;font-size:15px;">Libre </span><input type="radio" id="personas" value="Libre" name="estado">
+                    <span style="color:#fff;font-size:15px;">Ocupada </span><input type="radio" id="personas" value="Ocupada" name="estado">
+                    <br><br>
+                    <?php
+                        $registro = ControladorFormularios::ctrRegistroMesasAdmin();
+                        if($registro == "ok"){
+                            // limpiamos las variables
+                            echo '<script>
+                                if(window.history.replaceState){
+                                    window.history.replaceState(null, null, window.location="../../html/administrador/mesas.php");
+                                }
+                            </script>';                                             
+                        }
+                    ?>
+                    <input class="btn_reg" type="submit" value="Registrar">
+                    <br><br>
+                </form>
             </div>
         </article>
     </section>

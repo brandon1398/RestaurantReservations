@@ -3,11 +3,7 @@
     require_once "../../php/controlador/formularios.controlador.php";
     require_once "../../php/modelos/formularios.modelo.php";
     
-    $usuarios = ControladorFormularios::ctrSelectUsers();
-    $roles = ControladorFormularios::ctrSelectRoles();
-    $reservaciones = ControladorFormularios::ctrSelectAllReservation();
-    $mesasT = ControladorFormularios::ctrSelectMesas();
-
+    $categorias = ControladorFormularios::ctrSelectCategorias();
 ?>
 
 
@@ -73,38 +69,35 @@
     <section class="main">
         <article class="item_content">
             <table class="table_user display" id="tablaUser">
-                <caption>RESERVACIONES<label for="addUser" class="caption_b">Agregar <i class="fas fa-plus"></i></label></caption>
+                <caption>CATEGOR&Iacute;AS<label for="addUser" class="caption_b">Agregar <i class="fas fa-plus"></i></label></caption>
                 <thead>
                     <tr>
-                        <th>FECHA RESERVA</th>
-                        <th>HORA RESERVA</th>
-                        <th>USUARIO</th>
-                        <th>MESA</th>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody> 
                     <?php
-                        if(isset($reservaciones)):
-                            foreach($reservaciones as $reservation): ?>
+                        if(isset($categorias)):
+                            foreach($categorias as $categoria): ?>
                                 <tr>
-                                    <td><?php echo $reservation["fecha_reserva"]; ?></td>
-                                    <td><?php echo $reservation["hora_reserva"]; ?></td>
-                                    <td><?php echo $reservation["nombre_usuario"] . ' ' .$reservation["apellido_usuario"]; ?></td>
-                                    <td><?php echo $reservation["numero_mesa"]; ?></td>
+                                    
+                                    <td><?php echo $categoria["id_categoria"]; ?></td>
+                                    <td><?php echo $categoria["nombre_categoria"]; ?></td>
                                     <td>
                                         <form method="POST">
-                                            
-                                            <input type="hidden" value="<?php echo $reservation["id_reserva"]; ?>" name="deleteReserva">
-                                            <input type="hidden" value="<?php echo $reservation["fk_id_mesa"]; ?>" name="idMesa">
+                                            <a href="../../html/administrador/editar_categoria.php?id=<?php echo $categoria["id_categoria"]; ?>" class="btn btn-warning fas fa-pencil-alt"></a>
+                                         
+                                            <input type="hidden" value="<?php echo $categoria["id_categoria"]; ?>" name="deleteCategoria">
                                             <button onclick="return eliminar();" type="submit" class="btn btn-danger fas fa-trash-alt fa-1x"></button>
                                             <?php 
                                                 $eliminar = new ControladorFormularios();
-                                                $eliminar -> ctrDeleteReservationAdmin();
+                                                $eliminar -> ctrDeleteCategoria();
                                             ?>
                                         </form>                              
                                     </td>
-                                </tr>                               
+                                </tr>                   
                             <?php endforeach ?>
                         <?php endif; ?>                                      
                    
@@ -115,50 +108,34 @@
     <input type="checkbox" id="addUser">
     <section class="modalCreate">
         <article class="contenedor">
-            <header>NUEVA RESERVACI&Oacute;N</header>
+            <header>NUEVA CATEGOR&Iacute;A</header>
             <label class="x fas fa-window-close" for="addUser"></label>
             <div class="contenido">
-            <form class="formClass" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
-                <label for="cliente">Cliente</label>
-                <input type="text" name="cliente">
-                <br><br>        
-                <label for="fecha">Fecha</label>
-                <input type="date" name="fecha">
-                <br><br>
-                <label for="hora">Hora</label>
-                <input type="time" name="hora" value="11:00" min="11:00" max="21:00">
-                <br><br>
-                <label for="mesa">Mesa</label>
-                <select name="mesa" id="mesa" style="color: #e75b1e;">
-                    <option value="">Seleccione</option>
-                    <?php foreach($mesasT as $mesa): ?>
-                        <option value="<?php echo $mesa["id_mesa"]; ?>"><?php echo 'Mesa '.$mesa['numero_mesa']; ?></option>
-                    <?php endforeach ?>
-                </select>;
-                <br><br> 
-
-                <?php
-                    $registro = ControladorFormularios::ctrReservaMesaAdmin();
-                    if($registro == "ok"){
-                        // limpiamos las variables
-                        echo '<script>
-                            if(window.history.replaceState){
-                                window.history.replaceState(null, null, window.location="../../html/administrador/reservaciones.php");
-                            }
-                            window.location = "../../html/administrador/reservaciones.php"
-                        </script>';                                             
-                    }
-                ?>
-                <input class="btn_reg" type="submit" value="Registrar">
-                <br><br>
-            </form>
+                <form class="formClass" method="POST" id="formulario" name="formulario">
+                    
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre">
+                    <span id="asterisco2" class="nor">*</span>
+                    <br><br>
+                    
+                    <?php
+                        $registro = ControladorFormularios::ctrInsertCategoria();
+                        if($registro == "ok"){
+                            // limpiamos las variables
+                            echo '<script>
+                                if(window.history.replaceState){
+                                    window.history.replaceState(null, null, window.location="../../html/administrador/categorias.php");
+                                }
+                            </script>';                                             
+                        }
+                    ?>
+                    <input class="btn_reg" type="submit" value="Registrar">
+                    <br><br>
+                </form>
             </div>
         </article>
     </section>
 
-    <!-- <section class="modalCreate">
-
-    </section> -->
 
     <div class="footer-box pad-top-70" id="footer">
     <div class="container">
@@ -287,7 +264,7 @@
 
     <script>
         function eliminar(){
-            if(confirm('Desea eliminar la reservación?')){
+            if(confirm('Desea eliminar la categoría?')){
                 return true;
             }else{
                 return false;

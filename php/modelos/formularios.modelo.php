@@ -322,11 +322,74 @@
                 }
             }else{
                 print_r(Conexion::conectar()->errorInfo());
-            }
-            
-            
-           
+            }           
         } 
+
+        /* ----------------------------------
+            Reserva mesa admin
+        ---------------------------------- */
+
+        static public function mdlReservaMesaAdmin($tabla,$datos){
+            require_once "../../php/modelos/conexion.php";
+            $usuarioNombre = $datos['cliente'];
+            $mesa = $datos['mesa'];
+            $fecha = $datos['fecha'];
+            $hora = $datos['hora'];
+
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM reserva WHERE fecha_reserva=:fecha and hora_reserva=:hora
+            and fk_id_mesa=:mesa");
+
+            $stmt->bindParam(":fecha",$fecha,PDO::PARAM_STR);
+            $stmt->bindParam(":hora",$hora,PDO::PARAM_STR);
+            $stmt->bindParam(":mesa",$mesa,PDO::PARAM_INT);
+
+            if($stmt->execute()){
+                $num = $stmt->rowCount();
+                if($num > 0){
+                    echo "<script>alert('Error, esta mesa ya se encuentra reservada esa fecha y hora!')</script>";
+                    echo '<div class="alert alert-danger">Error, esta mesa ya se encuentra reservada esa fecha y hora!</div>';
+                }else{
+                    $stmtClient = Conexion::conectar() -> prepare("SELECT * FROM usuarios WHERE nombre_usuario=:usuario");
+                    $stmtClient -> bindParam(":usuario",$usuarioNombre,PDO::PARAM_STR);
+
+                    if($stmtClient->execute()){
+                        $numClient = $stmtClient -> rowCount();
+                        if($numClient > 0){
+                            $resClient = $stmtClient -> fetchAll();
+                            foreach($resClient as $client){
+                                $r_client = $client['id_usuario'];
+                            }
+                            $stmt = Conexion::conectar() -> prepare("INSERT INTO reserva(fecha_reserva, hora_reserva, fk_id_usuario,fk_id_mesa)
+                            VALUES (:fecha,:hora,:id_usuario,:id_mesa)");
+                            $stmt->bindParam(":fecha",$datos["fecha"],PDO::PARAM_STR);
+                            $stmt->bindParam(":hora",$datos["hora"],PDO::PARAM_STR);
+                            $stmt->bindParam(":id_usuario",$r_client,PDO::PARAM_INT);
+                            $stmt->bindParam(":id_mesa",$datos["mesa"],PDO::PARAM_INT);
+
+                            if($stmt->execute()){
+
+                                $sql = Conexion::conectar() -> prepare("UPDATE mesas SET estado_mesa='Ocupada' WHERE id_mesa = :id");
+                                $sql -> bindParam(":id",$mesa,PDO::PARAM_INT);
+
+                                if($sql -> execute()){
+                                    echo "<script>alert('Mesa reservada exitosamente!')</script>";
+                                    return 'ok';
+                                }   
+                            }else{
+                                print_r(Conexion::conectar()->errorInfo());
+                            }
+                            $stmt->close();
+                            $stmt=null;  
+                        }else{
+                            echo "<script>alert('No existe el usuario!')</script>";
+                            echo "<div class='alert alert-danger'>No existe el usuario!</div>";
+                        }
+                    }               
+                }
+            }else{
+                print_r(Conexion::conectar()->errorInfo());
+            }
+        }
         
         /* ----------------------------------
             Select users
@@ -395,6 +458,76 @@
                 return $stmt -> fetchAll();
             }
         }
+
+        /* ----------------------------------
+            select CATEGORIAS
+        ---------------------------------- */
+
+        static public function mdlSelectCategorias($tabla){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla");
+            if($stmt -> execute()){
+                return $stmt -> fetchAll();
+            }
+        }
+
+        /* ----------------------------------
+            insert CATEGORIAS
+        ---------------------------------- */
+
+        static public function mdlInsertCategoria($tabla,$nombre){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("INSERT INTO $tabla(nombre_categoria) VALUES (:nombre);");
+            $stmt->bindParam(":nombre",$nombre,PDO::PARAM_STR);
+            if($stmt -> execute()){
+                return "ok";
+            }
+        }
+
+        /* ----------------------------------
+            delete CATEGORIAS
+        ---------------------------------- */
+        static public function mdlDeleteCategoria($tabla,$id){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("DELETE FROM $tabla WHERE id_categoria=:id");
+            $stmt -> bindParam(":id",$id,PDO::PARAM_INT);
+            if($stmt->execute()){
+                return "ok";
+            }else{
+                return "null";
+            }
+        }
+
+        /* ----------------------------------
+            select CATEGORIAS ID
+        ---------------------------------- */
+        static public function mdlSelectCategoriasID($valor){
+            require_once '../../php/modelos/conexion.php';
+            $stmt = Conexion::conectar() -> prepare ("SELECT * FROM categoria WHERE id_categoria = :valor;");
+            $stmt -> bindParam(":valor",$valor,PDO::PARAM_INT);
+            if($stmt->execute()){
+                return $stmt -> fetch();
+            }
+        }
+
+        /* ----------------------------------
+            update categoria
+        ---------------------------------- */
+
+        static public function mdlUpdateCategoria($tabla,$data){
+            require_once '../../php/modelos/conexion.php';
+            $stmt = Conexion::conectar() -> prepare("UPDATE $tabla SET nombre_categoria=:nombre WHERE id_categoria=:id;");
+            $stmt -> bindParam(":nombre",$data['nombre_categoria'],PDO::PARAM_STR);
+            $stmt -> bindParam(":id",$data['id_categoria'],PDO::PARAM_INT);
+            if($stmt -> execute()){
+                return "ok";
+            }else{
+                print_r(Conexion::conectar->errorInfo());
+                return "null";
+            }
+        }
+
     }
 
 ?>
+

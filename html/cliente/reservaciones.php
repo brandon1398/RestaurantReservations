@@ -174,7 +174,7 @@
                                     <button onclick="return eliminarR();" type="submit" class="btn btn-danger fas fa-trash-alt fa-1x"></button>
                                     <?php 
                                         $eliminar = new ControladorFormularios();
-                                        $eliminar -> ctrDeleteReserva();
+                                        $eliminar -> ctrDeleteReservaClient();
                                     ?>
                                 </form>  
                             </td>

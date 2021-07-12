@@ -8,7 +8,7 @@
 ?>
 <section class="editUser">
     <article class="content">
-        <header class="title_edit">Editar Usuario</header>
+        <header class="title_edit">Editar Mesa</header>
         <div class="contenido">
             <form action="" method="POST">
                 <input type="hidden" class="req" id="id" name="id" value="<?php echo $valor; ?>">
