@@ -1055,7 +1055,7 @@ section.recl{
 
 form textarea{
     /* background: linear-gradient(335deg, rgb(255, 115, 0), rgb(243, 62, 8)); */
-    background: linear-gradient(to bottom right, rgb(248, 246, 246), rgba(230, 225, 223, 0.8));
+    background: linear-gradient(to bottom right, rgb(248, 246, 246), rgba(255, 255, 255, 0.8));
     color: #000;
     font-family: 'nautilus_pompiliusregular';
     border: none;
