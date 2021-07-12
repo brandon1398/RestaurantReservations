@@ -435,7 +435,7 @@
         }
 
         /* ----------------------------------
-            select PLATOS
+            select PLATOS for type category
         ---------------------------------- */
         static public function mdlSelectPlatos($tabla,$valor){
             require_once "../../php/modelos/conexion.php";
@@ -443,6 +443,18 @@
             $stmt -> bindParam(":valor",$valor,PDO::PARAM_STR);
 
             if($stmt->execute()){
+                return $stmt -> fetchAll();
+            }
+        }
+
+        /* ----------------------------------
+            select all PLATOS 
+        ---------------------------------- */
+
+        static public function mdlSelectP($tabla){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla");
+            if($stmt -> execute()){
                 return $stmt -> fetchAll();
             }
         }

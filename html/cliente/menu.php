@@ -4,7 +4,7 @@
     require_once "../../php/controlador/formularios.controlador.php";
     require_once "../../php/modelos/formularios.modelo.php";
     
-    $usuarios = ControladorFormularios::ctrSelectUsers();
+    /* $usuarios = ControladorFormularios::ctrSelectUsers();
     $roles = ControladorFormularios::ctrSelectRoles();
     $mesas = ControladorFormularios::ctrSelectMesasLibre();
     $mesasT = ControladorFormularios::ctrSelectMesas();
@@ -16,7 +16,8 @@
                 $id_fk_usuario = $list['fk_id_usuario'];
             }
         }
-    }
+    } */
+    $platos = ControladorFormularios::ctrSelectP();
 
     
 ?>
@@ -69,7 +70,7 @@
                 <li><a href="inicio.php">Inicio</a></li>      
                 <li><a href="reservaciones.php">Reservaciones</a></li>
                 <li><a href="#">Pedidos</a></li>
-                <li><a href="menu.php">Menu</a></li>
+                <li><a href="menu.php">Carta</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
         </nav>
@@ -98,7 +99,6 @@
             <br><br>
             <p style="color: rgba(238,70,6,.8); font-size:18px;">A tan solo $7.80</p>
         </section>
-        
 
         <section class="item_carta">
             <form action="" method="POST">
@@ -106,7 +106,6 @@
                 <input type="submit" class="categoria_fondo_2" value="ENSALADAS" name="btn_ensaladas">
                 <input type="submit" class="categoria_fondo_3" value="POSTRES" name="btn_postres">
                 <input type="submit" class="categoria_fondo_4" value="Bebidas" name="btn_bebidas">
-
                 <?php
                     $respuesta = ControladorFormularios::ctrSelectPlatos();
                 ?>
@@ -123,8 +122,25 @@
                             </article>
                     <?php endforeach; ?>
                 </section>
+                <br><br><br>
+                <?php else: ?>
+                    <br><br>
+                    <section class="card-pro" id="productos">
+                    <h1>CARTA</h1>
+                    <br><br>
+                    <?php foreach($platos as $plat): ?>
+                        
+                        <article class="pro_card_item">
+<!--                             <header class="title_product"><?php echo $plat['nombre_plato']; ?></header>
+ -->                            <img class="all_img" src="../../upload/<?php echo $plat['imagen_plato']; ?>" alt="">
+                            <p class="description"><br><br><?php echo $plat['nombre_plato']; ?><br></p>
+                            <p class="description"><br><br><br><?php echo $plat['descripcion_plato']; ?></p>
+                            <!-- <footer><?php echo '$'. $plat['precio_plato']; ?></footer> -->
+                        </article>
+                    <?php endforeach; ?>
+                    </section>
             <?php endif; ?>
-
+            <br><br>
         </section>
     </article>
 </section>

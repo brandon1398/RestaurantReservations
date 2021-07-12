@@ -372,7 +372,7 @@
         }
 
         /* ----------------------------------
-            select PLATOS
+            select PLATOS for type category
         ---------------------------------- */
         static public function ctrSelectPlatos(){
             if(isset($_POST['btn_carnes'])){
@@ -400,6 +400,32 @@
                     </script>";
                     return $respuesta;
                 }
+            }
+            else if(isset($_POST['btn_postres'])){
+                $tabla = "platos";
+                $valor = "Postres";
+                $respuesta = ModeloFormularios::mdlSelectPlatos($tabla,$valor);
+                if(isset($respuesta) && !empty($respuesta)){
+                    echo "<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null,null,window.location.href);
+                        }
+                        window.location = '../../html/cliente/menu.php#productos'
+                    </script>";
+                    return $respuesta;
+                }
+            }
+        }
+
+         /* ----------------------------------
+            select all PLATOS 
+        ---------------------------------- */
+
+        static public function ctrSelectP(){
+            $tabla = "platos";
+            $respuesta = ModeloFormularios::mdlSelectP($tabla);
+            if(isset($respuesta) && !empty($respuesta)){
+                return $respuesta;
             }
         }
 
