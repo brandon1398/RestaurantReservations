@@ -90,7 +90,7 @@
         <br>
         <section class="item_carta">
             <section class="image-fluid">
-                <img src="../../upload/plato_3.jpg" class="img-fluid" alt="">
+                <img class="best_plato" src="../../upload/plato_3.jpg" class="img-fluid" alt="">
             </section>
             <br><br><br>
             <h3 class="title_best">LOMO DE RES</h3>
@@ -98,52 +98,35 @@
             <br><br>
             <p style="color: rgba(238,70,6,.8); font-size:18px;">A tan solo $7.80</p>
         </section>
+        
 
         <section class="item_carta">
             <form action="" method="POST">
                 <input type="submit" class="categoria_fondo_1" value="CARNES" name="btn_carnes">
                 <input type="submit" class="categoria_fondo_2" value="ENSALADAS" name="btn_ensaladas">
                 <input type="submit" class="categoria_fondo_3" value="POSTRES" name="btn_postres">
-                <input type="submit" class="categoria_fondo_4" value="BEBIDAS" name="btn_bebidas">
+                <input type="submit" class="categoria_fondo_4" value="Bebidas" name="btn_bebidas">
+
+                <?php
+                    $respuesta = ControladorFormularios::ctrSelectPlatos();
+                ?>
             </form>
+            <?php if(isset($respuesta) && !empty($respuesta)): ?>
+                <section class="card-pro" id="productos">
+                    <h1>PLATOS</h1>
+                    <br><br><br>
+                    <?php foreach($respuesta as $res):?>
+                            <article class="pro_card_item">
+                                <header class="title_product"><?php echo $res['nombre_plato']; ?></header>
+                                <img src="../../upload/<?php echo $res['imagen_plato']; ?>" alt="">
+                                <footer><?php echo '$'. $res['precio_plato']; ?></footer>
+                            </article>
+                    <?php endforeach; ?>
+                </section>
+            <?php endif; ?>
+
         </section>
     </article>
-    <!-- <section class="carousel">
-        <img src="../../upload/plato2.jpg" id="img_menu">
-    </section> -->
-    <!-- <section class="categoria">
-        <div class="content">
-            <img src="../../upload/plato1.jpg" width="200px" height="200px" alt="">
-        </div>
-        <div class="content">
-            <img src="../../upload/plato1.jpg" width="200px" height="200px" alt="">
-        </div>
-        <div class="content">
-            <img src="../../upload/plato1.jpg" width="200px" height="200px" alt="">
-        </div>
-        <div class="content">
-            <img src="../../upload/plato1.jpg" width="200px" height="200px" alt="">
-        </div>
-        <div class="content">
-            <img src="../../upload/plato1.jpg" width="200px" height="200px" alt="">
-        </div>
-        <div class="content">
-            <img src="../../upload/plato1.jpg" width="200px" height="200px" alt="">
-        </div>
-    </section>
-
-    <section class="content_item_menu"> -->
-        <!-- <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="../../upload/plato1.jpg" width="200px" height="200px" alt="">
-                        <h2>Seco de pollo</h2>
-                    </td>
-                </tr>
-            </tbody>
-        </table>   -->  <!-- 
-    </section> -->
 </section>
 
 
@@ -170,3 +153,4 @@
     /* carrusel(); */
 
 </script>
+

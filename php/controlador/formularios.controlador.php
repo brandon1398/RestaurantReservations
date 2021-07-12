@@ -279,6 +279,10 @@
             }
         }
 
+        /* ----------------------------------
+            select reservas id
+        ---------------------------------- */
+
         static public function ctrSelectReservasId(){
             if(isset($_SESSION['id'])){
                 $tabla = "reserva";
@@ -295,6 +299,10 @@
             }
         }
 
+        /* ----------------------------------
+            delete reserva
+        ---------------------------------- */
+
         public function ctrDeleteReserva(){
             if(isset($_POST['deleteReserva'])){
                 $tabla = "reserva";
@@ -307,14 +315,83 @@
                         if(window.history.replaceState){
                             window.history.replaceState(null, null, window.location.href);
                         }
-                        window.location = '../../html/cliente/reservaciones.php'
+                        window.location = '../../html/administrador/reservaciones.php'
                     </script>";
                 }else{
                     echo "error";
                 }
             }
-
         }
+
+        /* ----------------------------------
+            select PLATOS
+        ---------------------------------- */
+        static public function ctrSelectPlatos(){
+            if(isset($_POST['btn_carnes'])){
+                $tabla = "platos";
+                $valor = "Carnes";
+                $respuesta = ModeloFormularios::mdlSelectPlatos($tabla,$valor);
+                if(isset($respuesta) && !empty($respuesta)){
+                    echo "<script>
+                        window.location = '../../html/cliente/menu.php#productos'
+                    </script>";
+
+                    return $respuesta;
+                }
+            }
+            else if(isset($_POST['btn_bebidas'])){
+                $tabla = "platos";
+                $valor = "Bebidas";
+                $respuesta = ModeloFormularios::mdlSelectPlatos($tabla,$valor);
+                if(isset($respuesta) && !empty($respuesta)){
+                    echo "<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null,null,window.location.href);
+                        }
+                        window.location = '../../html/cliente/menu.php#productos'
+                    </script>";
+                    return $respuesta;
+                }
+            }
+        }
+
+        /* ----------------------------------
+            select all reservation
+        ---------------------------------- */
+
+        static public function ctrSelectAllReservation(){
+            $tabla = "reserva";
+            $respuesta = ModeloFormularios::mdlSelectAllReservation($tabla);
+            if(isset($respuesta) && !empty($respuesta)){
+                /* echo "<script>
+                    window.location = '../../html/administrador/reservaciones.php'
+                </script>"; */
+                return $respuesta;
+            }
+        } 
+
+        /* ----------------------------------
+            select id reservation
+        ---------------------------------- */
+
+        static public function ctrDeleteReservationAdmin(){
+            $tabla = "reserva";
+            if(isset($_POST['idMesa']) && !empty($_POST['idMesa']) && isset($_POST['deleteReserva']) && !empty($_POST['deleteReserva'])){
+                $idMesa = $_POST['idMesa'];
+                $idReserva = $_POST['deleteReserva'];
+                $respuesta = ModeloFormularios::mdlDeleteReserva($tabla,$idReserva,$idMesa);
+                if($respuesta=="ok"){
+                    echo "<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location.href);
+                        }
+                        window.location = '../../html/administrador/reservaciones.php'
+                    </script>";
+                }else{
+                    echo "error";
+                }
+            }
+        } 
     }
 
 ?>

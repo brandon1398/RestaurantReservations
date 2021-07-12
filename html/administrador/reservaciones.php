@@ -5,6 +5,8 @@
     
     $usuarios = ControladorFormularios::ctrSelectUsers();
     $roles = ControladorFormularios::ctrSelectRoles();
+    $reservaciones = ControladorFormularios::ctrSelectAllReservation();
+
 ?>
 
 
@@ -70,51 +72,38 @@
     <section class="main">
         <article class="item_content">
             <table class="table_user display" id="tablaUser">
-                <caption>USUARIOS<label for="addUser" class="caption_b">Agregar <i class="fas fa-user-plus"></i></label></caption>
+                <caption>RESERVACIONES<label for="addUser" class="caption_b">Agregar <i class="fas fa-plus"></i></label></caption>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>APELLIDO</th>
-                        <th>TEL&Eacute;FONO</th>
-                        <th>EMAIL</th>
-                        <th>ROL</th>
+                        <th>FECHA RESERVA</th>
+                        <th>HORA RESERVA</th>
+                        <th>USUARIO</th>
+                        <th>MESA</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody> 
                     <?php
-                        if(isset($usuarios)):
-                            foreach($usuarios as $user): ?>
+                        if(isset($reservaciones)):
+                            foreach($reservaciones as $reservation): ?>
                                 <tr>
-                                    <td><?php echo $user["id_usuario"]; ?></td>
-                                    <td><?php echo $user["nombre_usuario"]; ?></td>
-                                    <td><?php echo $user["apellido_usuario"]; ?></td>
-                                    <td><?php echo $user["telefono_usuario"]; ?></td>
-                                    <td><?php echo $user["email_usuario"]; ?></td>
-                                    <td><?php echo $user["nombre_rol"]; ?></td>
+                                    <td><?php echo $reservation["fecha_reserva"]; ?></td>
+                                    <td><?php echo $reservation["hora_reserva"]; ?></td>
+                                    <td><?php echo $reservation["nombre_usuario"] . ' ' .$reservation["apellido_usuario"]; ?></td>
+                                    <td><?php echo $reservation["numero_mesa"]; ?></td>
                                     <td>
                                         <form method="POST">
-                                            <a href="../../html/administrador/editar.php?id=<?php echo $user["id_usuario"]; ?>" class="btn btn-warning fas fa-pencil-alt"></a>
-                                         
-                                            <input type="hidden" value="<?php echo $user["id_usuario"]; ?>" name="deleteUser">
+                                            
+                                            <input type="hidden" value="<?php echo $reservation["id_reserva"]; ?>" name="deleteReserva">
+                                            <input type="hidden" value="<?php echo $reservation["fk_id_mesa"]; ?>" name="idMesa">
                                             <button onclick="return eliminar();" type="submit" class="btn btn-danger fas fa-trash-alt fa-1x"></button>
                                             <?php 
                                                 $eliminar = new ControladorFormularios();
-                                                $eliminar -> ctrDeleteUser();
+                                                $eliminar -> ctrDeleteReservationAdmin();
                                             ?>
                                         </form>                              
                                     </td>
                                 </tr>                               
-                                
-                               <!--  $txt .= "<tr>";
-                                $txt .= '<td>'. $user['id_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['nombre_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['apellido_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['telefono_usuario'] . '</td>';
-                                $txt .= '<td>'. $user['email_usuario'] .'</td>';
-                                $txt .= '<td>'. $user['nombre_rol'] . '</td>';
-                                $txt .= "</tr>"; */ -->
                             <?php endforeach ?>
                         <?php endif; ?>                                      
                    
@@ -125,7 +114,7 @@
     <input type="checkbox" id="addUser">
     <section class="modalCreate">
         <article class="contenedor">
-            <header>NUEVO USUARIO</header>
+            <header>NUEVA RESERVACI&Oacute;N</header>
             <label class="x fas fa-window-close" for="addUser"></label>
             <div class="contenido">
             <form class="formClass" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
@@ -308,7 +297,7 @@
 
     <script>
         function eliminar(){
-            if(confirm('Desea eliminar el usuario?')){
+            if(confirm('Desea eliminar la reservacion?')){
                 return true;
             }else{
                 return false;

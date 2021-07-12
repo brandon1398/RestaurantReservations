@@ -371,6 +371,30 @@
             }
         }
 
+        /* ----------------------------------
+            select PLATOS
+        ---------------------------------- */
+        static public function mdlSelectPlatos($tabla,$valor){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla INNER JOIN categoria ON nombre_categoria=:valor and `categoria`.`id_categoria`=`platos`.`fk_id_categoria`");
+            $stmt -> bindParam(":valor",$valor,PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return $stmt -> fetchAll();
+            }
+        }
+
+        /* ----------------------------------
+            select all reservation
+        ---------------------------------- */
+
+        static public function mdlSelectAllReservation($tabla){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla INNER JOIN usuarios INNER JOIN mesas ON id_usuario=fk_id_usuario and id_mesa = fk_id_mesa");
+            if($stmt->execute()){
+                return $stmt -> fetchAll();
+            }
+        }
     }
 
 ?>
