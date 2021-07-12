@@ -539,6 +539,94 @@
             }
         }
 
+        /* ------------ PLATOS ------------- */
+
+        
+        /* ----------------------------------
+            Select platos
+        ---------------------------------- */
+        static public function mdlSelectPlato($tabla,$tabla2){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla INNER JOIN $tabla2 ON fk_id_categoria=id_categoria");
+            $stmt -> execute();
+            $num = $stmt->rowCount();
+            if($num > 0){
+                return $stmt -> fetchAll();
+            }else{
+                return null;
+            }
+        }
+        
+        /* ----------------------------------
+            Select categoria
+        ---------------------------------- */
+
+        static public function mdlSelectCategoria($tabla){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla");
+            $stmt -> execute();
+            $num = $stmt->rowCount();
+            if($num > 0){
+                return $stmt -> fetchAll();
+            }else{
+                return null;
+            }
+        }
+        /* ----------------------------------
+            Registro platos
+        ---------------------------------- */
+
+        static public function mdlRegistroPlatosAdmin($tabla, $datos,$txt){
+            require_once "../../php/modelos/conexion.php";
+         
+            $stmt = Conexion::conectar() -> prepare("INSERT INTO $tabla(nombre_plato, descripcion_plato, precio_plato, imagen_plato, fk_id_categoria) 
+            VALUES (:nombre, :descripcion, :precio, :imagen, :categoria)");
+            $stmt->bindParam(":nombre",$datos["nombre"],PDO::PARAM_STR);
+            $stmt->bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_STR);
+            $stmt->bindParam(":precio",$datos["precio"],PDO::PARAM_STR);
+            $stmt->bindParam(":imagen",$datos["imagen"],PDO::PARAM_STR);
+            $stmt->bindParam(":categoria",$datos["categoria"],PDO::PARAM_STR);
+
+            if($stmt->execute()){
+                return 'ok';
+            }else{
+                print_r(Conexion::conectar()->errorInfo());
+            }
+            $stmt->close();
+            $stmt = null;
+        }
+
+        /* ----------------------------------
+            Delete platos
+        ---------------------------------- */
+
+        static public function mdlDeletePlato($tabla,$valor){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("DELETE FROM $tabla WHERE id_plato=:id");
+            $stmt -> bindParam(":id",$valor,PDO::PARAM_INT);
+            if($stmt->execute()){
+                return "ok";
+            }else{
+                print_r(Conexion::conectar()->errorInfo());
+            }
+            $stmt->close();
+            $stmt=null;
+        }
+
+        /* ----------------------------------
+            Search plato for id
+        ---------------------------------- */
+        static public function mdlSelectPlatoId($tabla, $valor){
+            require_once "../../php/modelos/conexion.php";
+            $stmt = Conexion::conectar() -> prepare("SELECT * FROM $tabla WHERE id_plato=:id");
+            $stmt -> bindParam(":id",$valor,PDO::PARAM_INT);
+            if($stmt->execute()){
+                return $stmt -> fetch();
+            }else{
+                return null;
+            }
+        }
+
     }
 
 ?>

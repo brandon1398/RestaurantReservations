@@ -3,11 +3,8 @@
     require_once "../../php/controlador/formularios.controlador.php";
     require_once "../../php/modelos/formularios.modelo.php";
     
-    $usuarios = ControladorFormularios::ctrSelectUsers();
-    $roles = ControladorFormularios::ctrSelectRoles();
-    $reservaciones = ControladorFormularios::ctrSelectAllReservation();
-    $mesasT = ControladorFormularios::ctrSelectMesas();
-
+    $platos = ControladorFormularios::ctrSelectPlato();
+    $categorias = ControladorFormularios::ctrSelectCategoria();
 ?>
 
 
@@ -73,41 +70,43 @@
     <section class="main">
         <article class="item_content">
             <table class="table_user display" id="tablaUser">
-                <caption>RESERVACIONES<label for="addUser" class="caption_b">Agregar <i class="fas fa-plus"></i></label></caption>
+                <caption>PLATOS<label for="addUser" class="caption_b">Agregar <i class="fas fa-plus"></i></label></caption>
                 <thead>
                     <tr>
-                        <th>FECHA RESERVA</th>
-                        <th>HORA RESERVA</th>
-                        <th>USUARIO</th>
-                        <th>MESA</th>
+                        <th>IMAGEN</th>
+                        <th>NOMBRE PLATO</th>
+                        <th>DESCRIPCI&Oacute;N</th>
+                        <th>PRECIO</th>
+                        <th>CATEGOR&Iacute;A</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody> 
                     <?php
-                        if(isset($reservaciones)):
-                            foreach($reservaciones as $reservation): ?>
+                        if(isset($platos)):
+                            foreach($platos as $plato): ?>
                                 <tr>
-                                    <td><?php echo $reservation["fecha_reserva"]; ?></td>
-                                    <td><?php echo $reservation["hora_reserva"]; ?></td>
-                                    <td><?php echo $reservation["nombre_usuario"] . ' ' .$reservation["apellido_usuario"]; ?></td>
-                                    <td><?php echo $reservation["numero_mesa"]; ?></td>
+                                    <td><img src="../../upload/<?php echo $plato["imagen_plato"]; ?>" width="100px" height="100px" alt=""></td>                                    
+                                    <td><?php echo $plato["nombre_plato"]; ?></td>
+                                    <td><?php echo $plato["descripcion_plato"]; ?></td>
+                                    <td><?php echo $plato["precio_plato"]; ?></td>
+                                    
+                                    <td><?php echo $plato["nombre_categoria"]; ?></td>
                                     <td>
                                         <form method="POST">
-                                            
-                                            <input type="hidden" value="<?php echo $reservation["id_reserva"]; ?>" name="deleteReserva">
-                                            <input type="hidden" value="<?php echo $reservation["fk_id_mesa"]; ?>" name="idMesa">
+                                            <a href="../../html/administrador/editar_plato.php?id=<?php echo $plato["id_plato"]; ?>" class="btn btn-warning fas fa-pencil-alt"></a>
+                                         
+                                            <input type="hidden" value="<?php echo $plato["id_plato"]; ?>" name="deletePlato">
                                             <button onclick="return eliminar();" type="submit" class="btn btn-danger fas fa-trash-alt fa-1x"></button>
                                             <?php 
                                                 $eliminar = new ControladorFormularios();
-                                                $eliminar -> ctrDeleteReservationAdmin();
+                                                $eliminar -> ctrDeletePlato();
                                             ?>
                                         </form>                              
                                     </td>
-                                </tr>                               
+                                </tr>                   
                             <?php endforeach ?>
                         <?php endif; ?>                                      
-                   
                 </tbody>
             </table>
         </article>
@@ -115,39 +114,47 @@
     <input type="checkbox" id="addUser">
     <section class="modalCreate">
         <article class="contenedor">
-            <header>NUEVA RESERVACI&Oacute;N</header>
+            <header>NUEVO PLATO</header>
             <label class="x fas fa-window-close" for="addUser"></label>
             <div class="contenido">
-            <form class="formClass" method="POST" id="formulario" name="formulario" onsubmit="return validateForm()">
-                <label for="cliente">Cliente</label>
-                <input type="text" name="cliente">
-                <br><br>        
-                <label for="fecha">Fecha</label>
-                <input type="date" name="fecha">
+            <form class="formClass" method="POST" id="formulario" name="formulario" enctype="multipart/form-data">
+                
+                <label for="nombre">Nombre</label>
+                <input type="text" class="req" id="nombre" name="nombre">
+                <span id="asterisco1" class="nor">*</span>
                 <br><br>
-                <label for="hora">Hora</label>
-                <input type="time" name="hora" value="11:00" min="11:00" max="21:00">
+                <label for="descripcion">Descripci&oacute;n</label>
+                <input type="text" class="req" id="descripcion" name="descripcion">
+                <span id="asterisco2" class="nor">*</span>
                 <br><br>
-                <label for="mesa">Mesa</label>
-                <select name="mesa" id="mesa" style="color: #e75b1e;">
-                    <option value="">Seleccione</option>
-                    <?php foreach($mesasT as $mesa): ?>
-                        <option value="<?php echo $mesa["id_mesa"]; ?>"><?php echo 'Mesa '.$mesa['numero_mesa']; ?></option>
-                    <?php endforeach ?>
-                </select>;
-                <br><br> 
-
+                <label for="precio">Precio</label>
+                <input type="text" class="req" id="precio" name="precio">
+                <span id="asterisco3" class="nor">*</span>
+                <br><br>
+                <label for="imagen">Imagen</label>
+                <input type="file" class="req custom-file-input" id="imagen" name="imagen">
+                <br><br>
+                <label for="categoria">Categoria</label>
+                <select name="categoria" id="categoria">
+                    <?php
+                        foreach($categorias as $categoria){
+                        echo "<option value={$categoria['id_categoria']}>{$categoria['nombre_categoria']}</option>";
+                        }
+                    ?>
+                </select>
+                <br><br>
                 <?php
-                    $registro = ControladorFormularios::ctrReservaMesaAdmin();
+                
+                    $registro = ControladorFormularios::ctrRegistroPlatosAdmin();
                     if($registro == "ok"){
                         // limpiamos las variables
                         echo '<script>
                             if(window.history.replaceState){
-                                window.history.replaceState(null, null, window.location="../../html/administrador/reservaciones.php");
+                                window.history.replaceState(null, null, window.location="../../html/administrador/platos.php");
                             }
-                            window.location = "../../html/administrador/reservaciones.php"
                         </script>';                                             
                     }
+                
                 ?>
                 <input class="btn_reg" type="submit" value="Registrar">
                 <br><br>
@@ -156,11 +163,9 @@
         </article>
     </section>
 
-    <!-- <section class="modalCreate">
 
-    </section> -->
-
-    <div class="footer-box pad-top-70" id="footer">
+    
+   <div class="footer-box pad-top-70" id="footer">
     <div class="container">
         <div class="row footer_l">
             <div class="footer-in-main">
@@ -238,7 +243,6 @@
         </div>
     </div>
 
-
     
 
     <!-- JS -->
@@ -256,26 +260,26 @@
         $(document).ready(function() {
             $('#tablaUser').DataTable({
                         "language": {
-                        "emptyTable":			"No hay datos disponibles en la tabla.",
-                        "info":		   		"Del _START_ al _END_ de _TOTAL_ ",
-                        "infoEmpty":			"Mostrando 0 registros de un total de 0.",
-                        "infoFiltered":			"(filtrados de un total de _MAX_ registros)",
-                        "infoPostFix":			" registros!",
-                        "lengthMenu":			"Mostrar registros _MENU_",
-                        "loadingRecords":		"Cargando...",
-                        "processing":			"Procesando...",
-                        "search":			"Buscar:",
-                        "searchPlaceholder":		"Dato para buscar",
-                        "zeroRecords":			"No se han encontrado coincidencias.",
+                        "emptyTable":           "No hay datos disponibles en la tabla.",
+                        "info":             "Del _START_ al _END_ de _TOTAL_ ",
+                        "infoEmpty":            "Mostrando 0 registros de un total de 0.",
+                        "infoFiltered":         "(filtrados de un total de _MAX_ registros)",
+                        "infoPostFix":          " registros!",
+                        "lengthMenu":           "Mostrar registros _MENU_",
+                        "loadingRecords":       "Cargando...",
+                        "processing":           "Procesando...",
+                        "search":           "Buscar:",
+                        "searchPlaceholder":        "Dato para buscar",
+                        "zeroRecords":          "No se han encontrado coincidencias.",
                         "paginate": {
-                            "first":			"Primera",
-                            "last":				"Última",
-                            "next":				"Siguiente",
-                            "previous":			"Anterior"
+                            "first":            "Primera",
+                            "last":             "Última",
+                            "next":             "Siguiente",
+                            "previous":         "Anterior"
                         },
                         "aria": {
-                            "sortAscending":	"Ordenación ascendente",
-                            "sortDescending":	"Ordenación descendente"
+                            "sortAscending":    "Ordenación ascendente",
+                            "sortDescending":   "Ordenación descendente"
                         }
                     },
                     "lengthMenu": [5, 10, 20, 50],
@@ -287,7 +291,7 @@
 
     <script>
         function eliminar(){
-            if(confirm('Desea eliminar la reservación?')){
+            if(confirm('Desea eliminar el plato?')){
                 return true;
             }else{
                 return false;

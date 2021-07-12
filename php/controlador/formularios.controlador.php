@@ -535,6 +535,99 @@
                 return $respuesta;
             }
         }
+
+        /* ------------ PLATOS ------------- */
+
+
+        /* ----------------------------------
+            Select PLATOS
+        ---------------------------------- */
+        static public function ctrSelectPlato(){
+            $tabla = "platos";
+            $tabla2 = "categoria";
+            $respuesta = ModeloFormularios::mdlSelectPlato($tabla,$tabla2);
+            
+            if($respuesta){
+                return $respuesta;
+            }else{
+                return "null";
+            }
+        }
+
+        /* ----------------------------------
+            Registro platos
+        ---------------------------------- */
+
+        static public function ctrRegistroPlatosAdmin(){
+            
+            if(isset($_FILES['imagen'])){
+                $txt = $_FILES['imagen'];
+                $imagen = $txt['name'];
+                $tabla = "platos";
+                $datos = array("nombre" => $_POST['nombre'],
+                "descripcion" => $_POST['descripcion'],
+                "precio" => $_POST['precio'],
+                "imagen" => $imagen,
+                "categoria" => $_POST['categoria']);
+                $respuesta = ModeloFormularios::mdlRegistroPlatosAdmin($tabla, $datos,$txt);
+
+                $target_dir = "../../upload/";
+                $target_file = $target_dir . basename($_FILES["imagen"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));                
+                $check = getimagesize($_FILES["imagen"]["tmp_name"]);
+                if($check !== false) {
+                    $uploadOk = 1;
+                } else {
+                    $uploadOk = 0;
+                }
+                if (file_exists($target_file)) {
+                    $uploadOk = 0;//si existe lanza un valor en 0
+                }else{
+                    if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $target_file)){
+
+                    } 
+                }
+
+                return $respuesta;
+            }
+            
+        }
+
+        /* ----------------------------------
+            Select categoria
+        ---------------------------------- */
+
+        static public function ctrSelectCategoria(){
+            $tabla = "categoria";
+            $respuesta = ModeloFormularios::mdlSelectCategoria($tabla);
+            if($respuesta){
+                return $respuesta;
+            }else{
+                return "null";
+            }
+        }
+        
+        /* ----------------------------------
+            Delete plato
+        ---------------------------------- */
+        public function ctrDeletePlato(){
+            if(isset($_POST['deletePlato'])){
+                $tabla = "platos";
+                $valor = $_POST['deletePlato'];
+                $respuesta = ModeloFormularios::mdlDeletePlato($tabla, $valor);
+            }  
+            
+            if(isset($respuesta)){
+                if($respuesta == "ok"){
+                    echo '<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null, null, window.location="../../html/administrador/platos.php");
+                        }
+                    </script>;';
+                }
+            }
+        }
     }
 
 ?>

@@ -72,7 +72,7 @@
                 <li><a href="../administrador/mesas.php" class="active" id="mesas">Mesas</a></li>                
                 <li><a href="../administrador/reservaciones.php" id="menu">Reservaciones</a></li>
                 <li><a href="../administrador/categorias.php">Categor&iacute;as</a></li>
-                <li><a href="#">Platos</a></li>
+                <li><a href="../administrador/platos.php">Platos</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
         </nav>
@@ -110,7 +110,7 @@
             </div>
             <div class="usuarios">
                 <h3>PLATOS</h3>
-                <a href="../administrador/usuarios.php"><i class="fas fa-concierge-bell fa-8x"></i></a>
+                <a href="../administrador/platos.php"><i class="fas fa-concierge-bell fa-8x"></i></a>
                
             </div>
             <div class="usuarios">
