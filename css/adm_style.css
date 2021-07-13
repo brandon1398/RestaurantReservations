@@ -10,7 +10,8 @@ body{
     height: 100vh;
     background-color: transparent; */
     /* background: linear-gradient(to bottom right, #e75b1e, #dfcbc2); */
-    background: linear-gradient(to bottom right, rgb(247, 82, 33),rgb(228, 146, 121));
+    background: linear-gradient(to bottom right, rgb(247, 69, 15),rgb(224, 119, 86));
+    /* rgb(255, 59, 1),rgb(200, 118, 93) */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

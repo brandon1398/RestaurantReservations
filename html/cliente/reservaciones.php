@@ -68,7 +68,7 @@
             <ul class="nav">   
                 <li><a href="inicio.php">Inicio</a></li>      
                 <li><a href="reservaciones.php">Reservaciones</a></li>
-                <li><a href="#">Pedidos</a></li>
+                <li><a href="pedidos.php">Pedidos</a></li>
                 <li><a href="menu.php">Carta</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>

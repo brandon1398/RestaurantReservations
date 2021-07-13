@@ -415,6 +415,21 @@
                     return $respuesta;
                 }
             }
+            else if(isset($_POST['btn_ensaladas'])){
+                $tabla = "platos";
+                $valor = "Ensaladas";
+               
+                $respuesta = ModeloFormularios::mdlSelectPlatos($tabla,$valor);
+                if(isset($respuesta) && !empty($respuesta)){
+                    echo "<script>
+                        if(window.history.replaceState){
+                            window.history.replaceState(null,null,window.location.href);
+                        }
+                        window.location = '../../html/cliente/menu.php#productos'
+                    </script>";
+                    return $respuesta;
+                }
+            }
         }
 
          /* ----------------------------------

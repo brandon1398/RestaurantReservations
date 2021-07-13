@@ -8,7 +8,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-box-a">
                         <h3>Acerca de Nosotros</h3>
-                        <p>Aenean commodo ligula eget dolor aenean massa. Cum sociis nat penatibu set magnis dis parturient montes.</p>
+                        <p>Somos nuevos, pero tambien somos expertos y nuestro único objetivo es satisfacer la necesidad de nuestros consumidores.</p>
                         <ul class="socials-box footer-socials pull-left">
                             <li>
                                 <a href="#">

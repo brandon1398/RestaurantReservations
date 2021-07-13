@@ -1346,24 +1346,26 @@ article.pro_card_item{
 
 article.pro_card_item header{
     background: transparent;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: rgba(255, 94, 0);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgba(27, 25, 24,0.8);
     font-size: 30px;
+    color:#fff;
 }
 
 article.pro_card_item footer{
-    background-color: rgba(255, 94, 0,0.9);
+    background-color: rgba(27, 25, 24,0.9);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     font-size: 30px;
+    color: #fff;
 }
 
 article.pro_card_item img{
     width: 100%;
     height: 40vh;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 /* section header.title_product{
     position: absolute;

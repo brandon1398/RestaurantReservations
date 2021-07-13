@@ -34,7 +34,7 @@
             </div>
             <div class="usuarios">
                 <h3>PEDIDOS</h3>
-                <a href="#"><i class="fas fa-utensils fa-8x"></i></a>
+                <a href="pedidos.php"><i class="fas fa-utensils fa-8x"></i></a>
             </div>
             <div class="usuarios">
                 <h3>CARTA</h3>
@@ -43,7 +43,7 @@
             </div>
             <div class="usuarios">
                 <h3>CUENTA</h3>
-                <i class="fas fa-user-circle fa-8x"></i>
+                <a href="cuenta.php"><i class="fas fa-user-circle fa-8x"></i></a>
             </div>
         </div>
     </div>

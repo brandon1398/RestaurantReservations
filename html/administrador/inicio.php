@@ -93,12 +93,12 @@
             <div class="usuarios">
                 <h3>USUARIOS</h3>
                 <a href="../administrador/usuarios.php"><i class="fas fa-users fa-8x"></i></a>
-                <h3>1500</h3>
+                <!-- <h3>1500</h3> -->
             </div>
             <div class="usuarios">
                 <h3>MESAS</h3>
                 <a href="../administrador/mesas.php"><i class="fas fa-box fa-8x"></i></a>
-                <h3>50</h3>
+                <!-- <h3>50</h3> -->
             </div>
             <div class="usuarios">
                 <h3>RESERVACIONES</h3>

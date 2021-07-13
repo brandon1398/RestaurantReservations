@@ -69,7 +69,7 @@
             <ul class="nav">   
                 <li><a href="inicio.php">Inicio</a></li>      
                 <li><a href="reservaciones.php">Reservaciones</a></li>
-                <li><a href="#">Pedidos</a></li>
+                <li><a href="pedidos.php">Pedidos</a></li>
                 <li><a href="menu.php">Carta</a></li>
                 <li><a href="../../html/salir.php">Cerrar Sesi&oacute;n <i class="fas fa-user-circle"></i></a></li>
             </ul>
@@ -95,9 +95,9 @@
             </section>
             <br><br><br>
             <h3 class="title_best">LOMO DE RES</h3>
-            <p style="color: rgba(0,0,0,.5); font-size:20px;">Disfruta de la especialidad de la casa</p>
+            <p style="color: rgba(0,0,0,.5); font-size:25px;">Disfruta de la especialidad de la casa</p>
             <br><br>
-            <p style="color: rgba(238,70,6,.8); font-size:18px;">A tan solo $7.80</p>
+            <p style="color: rgba(238,70,6,.8); font-size:23px;">A tan solo $7.80</p>
         </section>
 
         <section class="item_carta">
@@ -112,21 +112,27 @@
             </form>
             <?php if(isset($respuesta) && !empty($respuesta)): ?>
                 <section class="card-pro" id="productos">
-                    <h1>PLATOS</h1>
+                    <h3 class="title_best">CARTA</h3>
+                    <br><br>
+                    <!-- <p style="font-size:20px;">Disfruta de la mejor comida</p> -->
                     <br><br><br>
                     <?php foreach($respuesta as $res):?>
+                        
                             <article class="pro_card_item">
                                 <header class="title_product"><?php echo $res['nombre_plato']; ?></header>
                                 <img src="../../upload/<?php echo $res['imagen_plato']; ?>" alt="">
                                 <footer><?php echo '$'. $res['precio_plato']; ?></footer>
                             </article>
                     <?php endforeach; ?>
+                    <br><br>
                 </section>
                 <br><br><br>
                 <?php else: ?>
                     <br><br>
                     <section class="card-pro" id="productos">
-                    <h1>CARTA</h1>
+                    <h3 class="title_best">CARTA</h3>
+                    <br><br><!-- 
+                    <p style="font-size:20px;">Disfruta de la mejor comida</p> -->
                     <br><br>
                     <?php foreach($platos as $plat): ?>
                         
@@ -142,8 +148,10 @@
             <?php endif; ?>
             <br><br>
         </section>
+        
     </article>
 </section>
+
 
 
 <script>
