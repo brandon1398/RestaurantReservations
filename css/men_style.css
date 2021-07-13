@@ -1364,7 +1364,7 @@ article.pro_card_item footer{
 article.pro_card_item img{
     width: 100%;
     height: 40vh;
-    border-top-left-radius: 20px;
+    border-top-left-radius: 0px;
     border-top-right-radius: 20px;
 }
 /* section header.title_product{
