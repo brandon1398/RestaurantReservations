@@ -120,7 +120,7 @@
                         
                             <article class="pro_card_item">
                                 <header class="title_product"><?php echo $res['nombre_plato']; ?></header>
-                                <img src="../../upload/<?php echo $res['imagen_plato']; ?>" alt="">
+                                <img src="../../upload/<?php echo $res['imagen_plato']; ?>"  alt="">
                                 <footer><?php echo '$'. $res['precio_plato']; ?></footer>
                             </article>
                     <?php endforeach; ?>

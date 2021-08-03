@@ -51,6 +51,8 @@
                 <?php
                     $actualizar = ControladorFormularios::ctrUpdateUser();
                     if($actualizar=="ok"){
+                        $_SESSION["validarIngreso"] = $_POST["nombre"];
+                        $_SESSION["apellido"] = $_POST["lastName"];
                         echo "<script>
                             if(window.history.replaceState){
                                 window.history.replaceState(null,null,window.location.href);
